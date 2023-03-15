@@ -1,3 +1,6 @@
+body{
+  background:#222222;
+}
 .galeria {
     display: grid;
     gap: 10px;
@@ -20,7 +23,7 @@
     height: 200px;
     background-size: cover;
     background-position: center;
-    color: white;
+    color: F3EFE0;
     text-align: left;
     text-shadow: 0px 0px 15px black;
   }
@@ -41,7 +44,7 @@
   height: 100px;
 }
 .details{
-  background-color: whitesmoke;
+  background-color: #F3EFE0;
   margin:10px;
 }
 .carro{

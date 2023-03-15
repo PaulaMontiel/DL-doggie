@@ -15,10 +15,10 @@ body{
 }
 .Nav-link{
     padding-right: 3em;
-    color: #F3EFE0;
+    color: aliceblue;
 }
 .fa-solid{
-    color: #F3EFE0;
+    color: aliceblue;
 }
 .placeholderSearch{
     border-radius: 10px;

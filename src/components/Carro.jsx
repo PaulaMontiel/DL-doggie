@@ -8,7 +8,7 @@ export default function Carro() {
 
     const { cart } = useContext(cartContext);
     const { cost } = useContext(contextCost);
-    console.log(cart);
+    
     return (
         <section id="gallery">
             <div className="container m-4" style={{ backgroundColor: "whitesmoke" }}>
@@ -16,15 +16,15 @@ export default function Carro() {
                     <h3>Detalles del pedido</h3>
                 </div>
                 <div className="row carro">
-                    {cart.map((pizza) => (
-                        <div key={pizza.id} className="details d-flex flex-column p-2" style={{ backgroundColor: "white" }}>
+                    {cart.map((product) => (
+                        <div key={product.id} className="details d-flex flex-column p-2" style={{ backgroundColor: "white" }}>
                             <div className="card-carro d-flex flex-row">
-                                <img src={pizza.img} alt={pizza.name} className="img-cart" />
+                                <img src={product.img} alt={product.name} className="img-cart" />
                                 <div className="card-body">
-                                    <h5 className="card-title">{pizza.name}</h5>
+                                    <h5 className="card-title">{product.name}</h5>
                                 </div>
                                 <div>
-                                    <h5>${pizza.price}</h5>
+                                    <h5>${product.price}</h5>
                                 </div>
                             </div>
 
