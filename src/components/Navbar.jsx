@@ -10,25 +10,25 @@ export default function Navbar({ cost }) {
     const setActiveClass = ({ isActive }) => (isActive ? "active" : undefined);
 
     return (
-        <div className="mynavbar">
+        <div className="">
             <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                 <span className="navbar-brand">
                     <img src={dl} alt="myIcon" width={280}/>
                 </span>
                 <span>
-                    <input type="search" name="" id="" placeholder="buscar" className="placeholderSearch" />
+                    <input type="search" name="" id="" placeholder="buscar" className="placeholderSearch p-2" />
                 </span>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse d-flex flex-row justify-content-end" id="navbarNavAltMarkup">
                     <div className="Nav-link">
-                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/carrito" end>
+                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/" end>
                             <i class="fa-solid fa-house">Home</i>
                         </NavLink>
                     </div>
                     <div className="Nav-link">
-                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/carrito" end>
+                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/login" end>
                             <i className="fa-solid  fa-user"> Iniciar Sesion </i>
                         </NavLink>
                     </div>

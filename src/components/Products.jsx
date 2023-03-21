@@ -12,7 +12,7 @@ const Products = ({ product }) => {
     const {cart, setCart} = useContext(cartContext);
 
     const goToGallery = () => {
-        navigate(`/`);
+        navigate(`/gallery`);
     };
 
     const addToCart = (product) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import '../assets/css/hero.css'
 import doggieHero from '../assets/img/faq-hero.png';
-import doggie2 from '../assets/img/banner.png';
+import doggie2 from '../assets/img/dog-ad.webp';
 import doggie3 from '../assets/img/york.png';
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from 'react-bootstrap/Carousel';

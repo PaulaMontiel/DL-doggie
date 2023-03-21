@@ -6,7 +6,7 @@ body{
 
 }
 .active {
-    color: #f6e652 !important;
+    color: #22A39F !important;
     }
 .navbar-brand{
     display: flex;
@@ -26,4 +26,7 @@ body{
     height:30px;
     color: #222222;
     margin: 2px;
-  }
+}
+Button{
+    background-color: #22A39F;
+}

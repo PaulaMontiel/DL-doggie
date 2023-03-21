@@ -1,44 +1,53 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Collapse from 'react-bootstrap/Collapse';
 import '../assets/css/categorias.css';
 
-
-
 export default function Categorias() {
+    const [open, setOpen] = useState(false);
 
     const setActiveClass = ({ isActive }) => (isActive ? "active" : undefined);
 
     return (
-        <div className="mynavbar">
-            <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                <div className="collapse navbar-collapse d-flex flex-row justify-content-start ps-5 pb-3" id="navbarNavAltMarkup">
+        <>
+            <Button
+            onClick={() => setOpen(!open)}
+            aria-controls="example-collapse-text"
+            aria-expanded={open}
+            >
+            Categorias
+            </Button>
+            <Collapse in={open}>
+                <div id="example-collapse-text">
                     <div className="Nav-link">
-                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/carrito" end>
+                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/gallery" end>
                             Alimentos
                         </NavLink>
                     </div>
                     <div className="Nav-link">
-                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/carrito" end>
+                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/gallery" end>
                             Descanso
                         </NavLink>
                     </div>
                     <div className="Nav-link">
-                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/carrito" end>
+                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/gallery" end>
                             Accesorios
                         </NavLink>
                     </div>
                     <div className="Nav-link">
-                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/carrito" end>
+                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/gallery" end>
                             Higiene 
                         </NavLink>
-                    </div>                    <div className="Nav-link">
-                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/carrito" end>
+                    </div>                    
+                    <div className="Nav-link">
+                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/gallery" end>
                             Entretencion
                         </NavLink>
                     </div>
+
                 </div>
-            </nav >
-       
-        </div >
-    );
+            </Collapse>
+        </>
+    )
 }

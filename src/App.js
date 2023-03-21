@@ -4,12 +4,12 @@ import MyTotalAmountContext from "./total_amount_context"
 import CartContext from "./cart_context"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Navbar from "./components/Navbar.jsx";
-import Categorias from "./components/Categorias.jsx";
 import Home from "./views/Home.jsx";
 import Gallery from "./views/gallery.jsx";
 import Product from "./views/Product.jsx";
 import Carrito from "./views/Carrito.jsx";
+import Login from "./views/Login.jsx";
+import UserRegistration from "./views/UserRegistration.jsx";
 import './App.css';
 
 function App() {
@@ -35,13 +35,13 @@ function App() {
         <MyTotalAmountContext.Provider value={{ cost, setCost }}>
         <CartContext.Provider value={{ cart, setCart }}>
           <BrowserRouter basename='front-dog-shp'>
-            <Navbar cost = { cost }/>
-            <Categorias></Categorias>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/product/:id" element={<Product />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/carrito" element={<Carrito />} />
+              <Route path="/login" element={<Login/>} />
+              <Route path="/userRegistration" element={<UserRegistration/>} />
             </Routes>
           </BrowserRouter>
           </CartContext.Provider>
