@@ -24,7 +24,7 @@ export default function Navbar({ cost }) {
                 <div className="collapse navbar-collapse d-flex flex-row justify-content-end" id="navbarNavAltMarkup">
                     <div className="Nav-link">
                         <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/" end>
-                            <i className="fa-solid fa-house">Home</i>
+                            <i class="fa-solid fa-house">Home</i>
                         </NavLink>
                     </div>
                     <div className="Nav-link">
