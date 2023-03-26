@@ -1,85 +1,60 @@
-import "../assets/css/gallery.css";
-import { useContext } from "react";
+import "../assets/css/marcas.css";
 import { useNavigate } from "react-router-dom";
-import context from "../product_context";
-import cartContext from "../cart_context";
-import contextCost from "../total_amount_context";
+// import { useContext } from "react";
+// import context from "../product_context";
 import acana from '../assets/img/acana.png';
-import bravery from '../assets/img/bravery.webp';
+import bravery from '../assets/img/BRAVERY.webp';
 import bravectorr from '../assets/img/bravectorr.png';
 import hills from '../assets/img/hills.jpeg';
 import proplan from '../assets/img/proplan.png';
-import doggieHero from '../assets/img/faq-hero.png';
-import doggieHero from '../assets/img/faq-hero.png';
-import doggieHero from '../assets/img/faq-hero.png';
+import royalCanin from '../assets/img/royal-canin.png';
+import Core from '../assets/img/Wellness_CORE.webp';
+import mPets from '../assets/img/m-pets.png';
+import wuwu from '../assets/img/wuwu-logo.png';
 
 
-export default function Gallery() {
+export default function GalleryMarcas() {
+
+    // const { products } = useContext(context);
 
     const navigate = useNavigate();
-    const { products } = useContext(context);
-    const { cost, setCost } = useContext(contextCost);
-    const {cart, setCart} = useContext(cartContext);
-
-    const addToCart = (product) => {
-        const newCart = cart;
-        const totalAmount = cost + product.price;
-        newCart.push(product);
-        setCart([...newCart]);
-        setCost(totalAmount);
-    }
-
-    const productDetails = (id) => {
-        if (products.length > 0) {
-            navigate(`/product/${id}`)
-        }
+    const productDetails = (marca) => {
+            navigate(`/product/${marca}`)
+    
     };
     return (
-        <section id="gallery">
-            <div className="container">
-                <div className="row">
-                        <div key={product.id} className="col-lg-4 mb-4">
-                            <div className="card">
-                                <img src={acana} alt={product.name} className="card-img-top" />
-                            </div>
+            <div className="container-fluid bg-dark">
+                <div className="row justify-content-space-around">
+                    <div  className=" d-flex flex-row gap-5">
+                        <div className="logo bg-light ">
+                            <img src={acana} alt='acana' className="im" onClick={() => productDetails()} />
                         </div>
-                        <div key={product.id} className="col-lg-4 mb-4">
-                            <div className="card">
-                                <img src={bravery} alt={product.name} className="card-img-top" />
-                            </div>
+                        <div className="logo bg-light ">
+                            <img src={bravery} alt='bravery' className="im" onClick={() => productDetails()} />
                         </div>
-                        <div key={product.id} className="col-lg-4 mb-4">
-                            <div className="card">
-                                <img src={bravectorr} alt={product.name} className="card-img-top" />
-                            </div>
+                        <div className="logo bg-light ">
+                            <img src={bravectorr} alt='bravectorr' className="im" onClick={() => productDetails()} />
                         </div>
-                        <div key={product.id} className="col-lg-4 mb-4">
-                            <div className="card">
-                                <img src={hills} alt={product.name} className="card-img-top" />
-                            </div>
+                        <div className="logo bg-light ">
+                            <img src={hills} alt='hills' className="im" onClick={() => productDetails()}/>
                         </div>
-                        <div key={product.id} className="col-lg-4 mb-4">
-                            <div className="card">
-                                <img src={proplan} alt={product.name} className="card-img-top" />
-                            </div>
+                        <div className="logo bg-light ">
+                            <img src={proplan} alt='proplan' className="im" onClick={() => productDetails()}/>
                         </div>
-                        <div key={product.id} className="col-lg-4 mb-4">
-                            <div className="card">
-                                <img src={product.img} alt={product.name} className="card-img-top" />
-                            </div>
+                        <div className="logo bg-light ">
+                            <img src={royalCanin} alt='royalCanin' className="im" onClick={() => productDetails()}/>
                         </div>
-                        <div key={product.id} className="col-lg-4 mb-4">
-                            <div className="card">
-                                <img src={product.img} alt={product.name} className="card-img-top" />
-                            </div>
+                        <div className="logo bg-light ">
+                            <img src={Core} alt='core' className="im" onClick={() => productDetails()}/>
                         </div>
-                        <div key={product.id} className="col-lg-4 mb-4">
-                            <div className="card">
-                                <img src={product.img} alt={product.name} className="card-img-top" />
-                            </div>
+                        <div className="logo bg-light ">
+                            <img src={mPets} alt='mpets' className="im" onClick={() => productDetails()}/>
                         </div>
+                        <div className="logo bg-light ">
+                            <img src={wuwu} alt='wuwu' className="im" onClick={() => productDetails()}/>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
     );
 }

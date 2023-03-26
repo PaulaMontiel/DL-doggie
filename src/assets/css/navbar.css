@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
 
 body{
-    background:#222222;
+    background:#242422;
     font-family: 'Shadows Into Light Two', cursive;    width: 100vw;
 
 }
@@ -24,6 +24,9 @@ body{
     border-radius: 10px;
     width: 350px;
     height:30px;
-    color: #222222;
+    color: #242422;
     margin: 2px;
-  }
+}
+.bg-negro{
+    background: #222222;
+}

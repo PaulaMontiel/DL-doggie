@@ -11,9 +11,9 @@ export default function Navbar({ cost }) {
 
     return (
         <div className="">
-            <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-md navbar-dark bg-negro">
                 <span className="navbar-brand">
-                    <img src={dl} alt="myIcon" width={280}/>
+                    <img src={dl} alt="myIcon" width={200}/>
                 </span>
                 <span>
                     <input type="search" name="" id="" placeholder="buscar" className="placeholderSearch p-2" />

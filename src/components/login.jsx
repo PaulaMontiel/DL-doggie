@@ -4,10 +4,10 @@ import "../assets/css/login.css";
 export default function Login(){
     return (
 
-    <div className="container-fluid log-back">
-        <div className=" d-flex flex-column justify-content-center ">
+    <div className="log-back">
+        <div className=" d-flex flex-column align-items-center ">
             <div className="st-log">
-                <form className=" d-flex flex-column align-items-center m-5 p-5 gap-3">
+                <form className=" d-flex flex-column align-items-center p-4 gap-3">
                     <span className="p-b-37">
                        <h3> Inicio de Sesión</h3>
                     </span>
@@ -38,7 +38,7 @@ export default function Login(){
                         </a>
                     </div>
                     <div className="text-center">
-                        <a href="/front-dog-shp/userRegistration" className="txt2 hov1">
+                        <a href="/front-dog-shp/userVsSeller" className="txt2 hov1">
                             Registrate aquí
                         </a>
                     </div>

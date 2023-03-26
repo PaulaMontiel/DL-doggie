@@ -83,20 +83,36 @@ function RegistrationForm() {
                   </div>
               </div>
               <div className='d-flex flex-column gap-3 dir-col'>
-                <h4>Informacion de la Cuenta</h4>
-                <div className='col-es'>
-                  <label>Email:</label>
-                  <input type="email" name="email" required value={formData.email} onChange={handleChange} />
+                <div>
+                    <h4>Informacion de la Cuenta</h4>
+                    <div className='col-es'>
+                      <label>Email:</label>
+                      <input type="email" name="email" required value={formData.email} onChange={handleChange} />
+                    </div>
+                    <div className='col-es'>
+                      <label>Contraseña:</label>
+                      <input type="password" name="password" required value={formData.password} onChange={handleChange} />
+                    </div>
+                    <div className='col-es'>
+                      <label>Confirmar Contraseña:</label>
+                      <input type="password" name="confirmpassword" required value={formData.confirmpassword} onChange={handleChange} />
+                    </div>
                 </div>
-                <div className='col-es'>
-                  <label>Contraseña:</label>
-                  <input type="password" name="password" required value={formData.password} onChange={handleChange} />
+                <div>
+                  <h4>Informacion de la Empresa</h4>
+                  <div className='col-es'>
+                    <label>Nombre Sociedad:</label>
+                    <input type="name" name="name" required value={formData.email} onChange={handleChange} />
+                  </div>
+                  <div className='col-es'>
+                    <label>Rut</label>
+                    <input type="number" name="number" required value={formData.password} onChange={handleChange} />
+                  </div>
+                  <div className='col-es'>
+                    <label>Confirmar Contraseña:</label>
+                    <input type="password" name="confirmpassword" required value={formData.confirmpassword} onChange={handleChange} />
+                  </div>
                 </div>
-                <div className='col-es'>
-                  <label>Confirmar Contraseña:</label>
-                  <input type="password" name="confirmpassword" required value={formData.confirmpassword} onChange={handleChange} />
-                </div>
-
               </div>
           </form>
         </div>

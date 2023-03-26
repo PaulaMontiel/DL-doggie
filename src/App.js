@@ -10,6 +10,7 @@ import Product from "./views/Product.jsx";
 import Carrito from "./views/Carrito.jsx";
 import Login from "./views/Login.jsx";
 import UserRegistration from "./views/UserRegistration.jsx";
+import UserVsSeller from "./views/UserVsSeller.jsx";
 import './App.css';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
               <Route path="/carrito" element={<Carrito />} />
               <Route path="/login" element={<Login/>} />
               <Route path="/userRegistration" element={<UserRegistration/>} />
+              <Route path="/UserVsSeller" element={<UserVsSeller/>} />
             </Routes>
           </BrowserRouter>
           </CartContext.Provider>

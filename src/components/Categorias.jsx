@@ -8,7 +8,7 @@ export default function Categorias() {
 
     return (
         <>
-                <div className="d-flex flex-row justify-content-center m-3">
+                <div className="d-flex flex-row justify-content-center align-items-flex-start">
                     <div className="Nav-link">
                         <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/gallery" end>
                             Alimentos
