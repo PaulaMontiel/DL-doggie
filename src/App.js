@@ -14,6 +14,7 @@ import Profile from './views/Profile';
 import Productos from './views/Productos';
 
 import './App.css';
+import Publicaciones from './views/Publicaciones';
 
 function App() {
 
@@ -47,6 +48,8 @@ function App() {
               <Route path="/userRegistration" element={<UserRegistration/>} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/productos" element={<Productos />} />
+              <Route path="/publicaciones" element={<Publicaciones />} />
+              
             </Routes>
           </BrowserRouter>
           </CartContext.Provider>

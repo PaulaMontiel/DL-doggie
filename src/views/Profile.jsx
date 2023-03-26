@@ -1,13 +1,14 @@
+
 import Navbar from "../components/Navbar.jsx";
-import Profile from "../components/Profile"
+import { UserProfile } from '../components/UserProfile.jsx';
 
-
-const profile = () => {
+export default function Profile() {
+    
     return (
-        <div>
+        <>
             <Navbar></Navbar>
-            <Profile></Profile>
-        </div>
-    )
+            <h1>Publicaciones</h1>
+            <UserProfile></UserProfile>
+        </>
+    );
 }
-export default profile;
