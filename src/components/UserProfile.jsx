@@ -1,121 +1,94 @@
 import React from 'react';
-import { Container, Row, Col, Card, ListGroup, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Publicaciones from './Publicaciones';
+import "../assets/css/profile.css"
+import { useNavigate } from 'react-router-dom';
+import Avatar2 from "../assets/img/Avatar2.webp";
 // import { useHistory } from 'react-router-dom';
 
 
 
 export function UserProfile() {
-    // const history = useHistory();
-    // const handleClick = () => {
-    //     history.push('/publicaciones');
-    // }
+    const navigate = useNavigate();
 
     return (
-        <section tyle={{ backgroundColor: '#eee' }}>
+        <section className="section-profile" style={{ backgroundColor: '#eee', opacity: 0.8 }}>
             <Container className="py-5">
-                <Row>
-                    <Col lg={4}>
-                        <Card className="mb-4">
-                            <Card.Body class="card-body text-center">
-                                <Card.Img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" className="rounded-circle img-fluid" style={{ width: '150px' }} />
-                                <h5 className="my-3">John Smith</h5>
+                <Row style={{ marginTop: 1}}>
+                    <Col lg={4}>    
+                        <Card className="mb-4, shadow">
+                            <Card.Body className="card-body text-center">
+                                <Card.Img src={Avatar2} alt="avatar" className="rounded-circle img-fluid" style={{ width: '150px' }} />
+                                <h5 className="my-3 fw-bold">John Smith</h5>
                                 <p className="text-muted mb-1">Full Stack Developer</p>
                                 <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
                                 <div className="d-flex justify-content-center mb-2">
-                                    <Button variant="primary">Follow</Button>
-                                    <Button variant="outline-primary ms-1">Message</Button>
+                                    <Button variant="primary">Cerrar Sesion</Button>
+                                    <Button variant="outline-primary ms-1">Enviar Mensaje</Button>
                                 </div>
-                            </Card.Body>
-                        </Card>
-                        <Card className="mb-4 mb-lg-0">
-                            <Card.Body className="p-0">
-                                <ListGroup variant="flush" className="rounded-3">
-                                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                                        <i className="fas fa-globe fa-lg text-warning"></i>
-                                        <p className="mb-0">https://mdbootstrap.com</p>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                                        <i className="fab fa-github fa-lg" style={{ color: '#333333' }}></i>
-                                        <p className="mb-0">mdbootstrap</p>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                                        <i className="fab fa-twitter fa-lg" style={{ color: '#55acee' }}></i>
-                                        <p className="mb-0">@mdbootstrap</p>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                                        <i className="fab fa-instagram fa-lg" style={{ color: '#ac2bac' }}></i>
-                                        <p className="mb-0">mdbootstrap</p>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                                        <i className="fab fa-facebook-f fa-lg" style={{ color: '#3b5998' }}></i>
-                                        <p className="mb-0">mdbootstrap</p>
-                                    </ListGroup.Item>
-                                </ListGroup>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col lg={8}>
-                        <Card>
-                            <Card.Body>
+                        <Card className='shadow'>
+                            <Card.Body >
                                 <Row >
                                     <Col sm={3}>
-                                        <p className="mb-0">Full Name</p>
+                                        <p className="mb-0 fw-bold">Nombre</p>
                                     </Col>
                                     <Col sm={9}>
-                                        <p className="text-muted mb-0">Johnatan Smith</p>
+                                        <p className="text-muted mb-0 fw-bold">Felipe Cruz</p>
                                     </Col>
                                 </Row>
 
                                 <Row >
                                     <Col sm={3}>
-                                        <p className="mb-0">Email</p>
+                                        <p className="mb-0 fw-bold">Email</p>
                                     </Col>
                                     <Col sm={9}>
-                                        <p className="text-muted mb-0">example@example.com</p>
+                                        <p className="text-muted mb-0 fw-bold">example@example.com</p>
                                     </Col>
                                 </Row>
 
                                 <Row>
                                     <Col sm={3}>
-                                        <p className="mb-0">Phone</p>
+                                        <p className="mb-0 fw-bold">Telefono</p>
                                     </Col>
                                     <Col sm={9}>
-                                        <p className="text-muted mb-0">(097) 234-5678</p>
+                                        <p className="text-muted mb-0 fw-bold">(097) 234-5678</p>
                                     </Col>
                                 </Row>
 
                                 <Row >
                                     <Col sm={3} >
-                                        <p className="mb-0">Mobile</p>
+                                        <p className="mb-0 fw-bold">Tipo de Usuario</p>
                                     </Col>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">(098) 765-4321</p>
+                                        <p class="text-muted mb-0 fw-bold">Vendedor</p>
                                     </div>
                                 </Row>
 
 
                                 <Row >
                                     <Col sm={3}>
-                                        <p className="mb-0">Address</p>
+                                        <p className="mb-0 fw-bold">Direccion</p>
                                     </Col>
                                     <Col sm={9}>
-                                        <p className="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                        <p className="text-muted mb-0 fw-bold">Bay Area, San Francisco, CA</p>
                                     </Col>
                                 </Row>
 
                             </Card.Body>
                         </Card>
                         <Row>
-                            <Col md={12}>
+                            <Col md={12} style={{marginTop: "20px"}}>
                                 <Publicaciones></Publicaciones>
-                                {/* <PublicacionesDet></PublicacionesDet> */}
                             </Col>
 
                         </Row>
                         <Row>
                             <Col cmd={12}>
-                                <Button variant="primary" to="/publicaciones">
+                                <Button>
                                     Mis Publicaciones
                                 </Button>
                             </Col>

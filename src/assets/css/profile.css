@@ -1,0 +1,23 @@
+.section-profile{
+    background: url("../img/650205.jpeg");
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.py-5{
+    color: #22A39F;
+    padding: auto;
+    border-radius: 10px;
+    margin: auto;
+    opacity: 0.8;
+    justify-content: center;
+    display: flex;
+    
+    
+}
+
+.shadow{
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
