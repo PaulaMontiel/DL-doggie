@@ -7,9 +7,10 @@ import cartContext from "../cart_context";
 import contextCost from "../total_amount_context";
 
 const Products = ({ product }) => {
+    console.log(product);
     const navigate = useNavigate();
     const { cost, setCost } = useContext(contextCost);
-    const {cart, setCart} = useContext(cartContext);
+    const { cart, setCart } = useContext(cartContext);
 
     const goToGallery = () => {
         navigate(`/gallery`);
@@ -23,28 +24,34 @@ const Products = ({ product }) => {
         setCost(totalAmount);
     }
 
-    if (product.hasOwnProperty("ingredients") && product.ingredients.length > 0) {
+    if (product) {
 
         return (
+            <section id="product">
             <div className="container">
                 <div className="row">
-                    <div key={product.id} className="">
+                    <div key={product.id_producto} className="">
                         <div className="card d-flex flex-row m-4">
-                            <img src={product.img} alt={product.nombre} className="card-img-top" />
+                            <img src={product.img} alt={product.nombre} className="card-img-top img-card" />
                             <div className="card-body">
                                 <h2 className="card-title">{product.nombre}</h2>
                                 <div className="gap-3">
                                     <p className="card-text">{product.descripcion}</p>
                                 </div>
                                 <br />
-                                <h6>Precio : $ {product.precio}</h6>
-                                <button className="btn btn-outline-success btn-sm" onClick={() => goToGallery()}>Volver a la Galería</button>
-                                <button className="btn btn-outline-danger btn-sm" onClick={() => addToCart(product)}>Agregar 🛒</button>
+                                <div>
+                                    <h6>Precio : $ {product.precio}</h6>
+                                </div>
+                                <div>
+                                    <button className="btn btn-outline-success btn-sm" onClick={() => goToGallery()}>Volver a la Galería</button>
+                                    <button className="btn btn-outline-danger btn-sm" onClick={() => addToCart(product)}>Agregar 🛒</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </section>
         )
     }
 }

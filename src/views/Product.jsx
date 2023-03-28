@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Products from "../components/Products";
 import context from "../producto_context.jsx";
+import Navbar from "../components/Navbar.jsx";
 
 const Product = ({id}) => {
     const productId = useParams(id);
@@ -11,9 +12,9 @@ const Product = ({id}) => {
 
     const searchProduct = ({ id }) => {
         // eslint-disable-next-line array-callback-return
-        products.find((element) => {
-            if (element.id === id) {
-                setProduct(element);
+        products.value.forEach(producto => {
+            if (parseInt(producto.id_producto) === parseInt(id)) {
+                setProduct(producto);
             }
         });
     };
@@ -25,6 +26,7 @@ const Product = ({id}) => {
 
     return (
         <div>
+            <Navbar></Navbar>
             <Products product={product}></Products>
         </div>
 
