@@ -19,7 +19,7 @@ export function UserProfile() {
                         <Card className="mb-4, shadow">
                             <Card.Body className="card-body text-center">
                                 <Card.Img src={Avatar2} alt="avatar" className="rounded-circle img-fluid" style={{ width: '150px' }} />
-                                <h5 className="my-3 fw-bold">John Smith</h5>
+                                <h5 className="my-3 fw-bold">Felipe Cruz</h5>
                                 <p className="text-muted mb-1">Full Stack Developer</p>
                                 <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
                                 <div className="d-flex justify-content-center mb-2">
