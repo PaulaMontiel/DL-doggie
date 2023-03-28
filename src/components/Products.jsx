@@ -30,16 +30,14 @@ const Products = ({ product }) => {
                 <div className="row">
                     <div key={product.id} className="">
                         <div className="card d-flex flex-row m-4">
-                            <img src={product.img} alt={product.name} className="card-img-top" />
+                            <img src={product.img} alt={product.nombre} className="card-img-top" />
                             <div className="card-body">
-                                <h2 className="card-title">{product.name}</h2>
-                                <div>
-                                    <p className="card-text">{product.desc}</p>
-                                    {product.ingredients.map((ingredient) => (<h6>🍕{ingredient}</h6>))}
+                                <h2 className="card-title">{product.nombre}</h2>
+                                <div className="gap-3">
+                                    <p className="card-text">{product.descripcion}</p>
                                 </div>
                                 <br />
-                                <h4>Precio : $ {product.price}</h4>
-
+                                <h6>Precio : $ {product.price}</h6>
                                 <button className="btn btn-outline-success btn-sm" onClick={() => goToGallery()}>Volver a la Galería</button>
                                 <button className="btn btn-outline-danger btn-sm" onClick={() => addToCart(product)}>Agregar 🛒</button>
                             </div>

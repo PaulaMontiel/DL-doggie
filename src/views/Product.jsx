@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Products from "../components/Products";
-import context from "../product_context.jsx";
+import context from "../producto_context.jsx";
 
 const Product = ({id}) => {
     const productId = useParams(id);
