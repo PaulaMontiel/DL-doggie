@@ -16,8 +16,7 @@ const Products = ({ product }) => {
     };
 
     const addToCart = (product) => {
-        const newCart = cart;
-        const totalAmount = cost + product.price;
+        const totalAmount = cost + product.precio;
         newCart.push(product);
         setCart([...newCart]);
         setCost(totalAmount);
@@ -37,7 +36,7 @@ const Products = ({ product }) => {
                                     <p className="card-text">{product.descripcion}</p>
                                 </div>
                                 <br />
-                                <h6>Precio : $ {product.price}</h6>
+                                <h6>Precio : $ {product.precio}</h6>
                                 <button className="btn btn-outline-success btn-sm" onClick={() => goToGallery()}>Volver a la Galería</button>
                                 <button className="btn btn-outline-danger btn-sm" onClick={() => addToCart(product)}>Agregar 🛒</button>
                             </div>
