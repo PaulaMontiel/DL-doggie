@@ -16,6 +16,7 @@ const Products = ({ product }) => {
     };
 
     const addToCart = (product) => {
+        const newCart = cart;
         const totalAmount = cost + product.precio;
         newCart.push(product);
         setCart([...newCart]);
