@@ -1,12 +1,14 @@
 import React from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import '../assets/css/navbar.css';
 import dl from "../assets/img/dl-store.jpeg";
+import contextCost from "../total_amount_context";
 
 
 
-export default function Navbar({ cost }) {
-
+const Navbar = () => {
+    const { cost } = useContext(contextCost);
     const setActiveClass = ({ isActive }) => (isActive ? "active" : undefined);
 
     return (
@@ -43,3 +45,4 @@ export default function Navbar({ cost }) {
         </div >
     );
 }
+export default Navbar;

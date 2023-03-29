@@ -12,11 +12,20 @@ export default function Gallery() {
     const { cost, setCost } = useContext(contextCost);
     const { cart, setCart } = useContext(cartContext);
 
-    const addToCart = (producto) => {
-        const newCart = cart;
-        const totalAmount = cost + producto.precio;
-        newCart.push(producto);
-        setCart([...newCart]);
+    const addToCart = (product) => {
+        var newCart = cart;
+        const totalAmount = cost + product.precio;
+        var foundIndex = cart.findIndex(x => x.id_producto === product.id_producto);
+        if (foundIndex!== -1) {
+            let cantidad = newCart[foundIndex]['cantidad'];
+            newCart[foundIndex]['cantidad'] = cantidad + 1;
+            setCart([...newCart]);
+        } else {
+            product["cantidad"] = 1;
+            newCart.push(product);
+            setCart([...newCart]);
+        }
+
         setCost(totalAmount);
     }
 
@@ -25,7 +34,6 @@ export default function Gallery() {
             navigate(`/product/${id}`)
         }
     };
-    console.log(products.value);
     return (
         <section id="gallery">
             <div className="container">
@@ -37,6 +45,7 @@ export default function Gallery() {
                                     <img src={producto.img} alt={producto.nombre} className="card-img-top" />
                                     <div className="card-body">
                                         <h5 className="card-title">{producto.nombre}</h5>
+                                        <p className="card-title">${producto.precio}</p>
                                         <p className="card-text">{producto.descripcion}</p>
                                         <button className="btn btn-outline-success btn-sm" onClick={() => productoDetails(producto.id_producto)}>Ver Más 👀</button>
                                         <button className="btn btn-outline-danger btn-sm" onClick={() => addToCart(producto)}>Agregar 🛒</button>

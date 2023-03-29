@@ -34,7 +34,7 @@ export default function Login(){
                             <i className="fa fa-facebook-f"></i>
                         </a>
                         <a href="/" className="p-2">
-                            <i class="fa-brands fa-google cloud-icon"></i>
+                            <i className="fa-brands fa-google cloud-icon"></i>
                         </a>
                     </div>
                     <div className="text-center">
