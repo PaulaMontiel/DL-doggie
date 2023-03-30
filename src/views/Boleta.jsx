@@ -3,7 +3,6 @@ import { PDFViewer, BlobProvider } from '@react-pdf/renderer';
 import { useContext } from "react";
 import cartContext from "../cart_context";
 import contextCost from "../total_amount_context";
-import ReactPDF from '@react-pdf/renderer';
 
 export default function Carrito() {
     const { cart } = useContext(cartContext);
