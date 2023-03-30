@@ -108,7 +108,7 @@ export default function BoletaPDF({ datos }) {
                         <Text style={styles.tableColHeader}>Total</Text>
                     </View>
                     {cart.map((item) => (
-                        <View key={item.id_prooducto} style={styles.tableRow}>
+                        <View key={item.id_producto} style={styles.tableRow}>
                             <Text style={styles.tableCol}>{item.id_producto}</Text>
                             <Text style={styles.tableColDesc}>{item.nombre}</Text>
                             <Text style={styles.tableCol}>{item.precio}</Text>

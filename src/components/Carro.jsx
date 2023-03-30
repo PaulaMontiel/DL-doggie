@@ -14,6 +14,7 @@ export default function Carro() {
         navigate(`/gallery`);
     };
     const payProcess = () => {
+        console.log('carrito')
         navigate(`/boleta`);
     };
     const productDelete = ( id, valor ) => {
@@ -49,7 +50,7 @@ export default function Carro() {
                                     <h5 className="card-title">${product.precio * product.cantidad}</h5>
                                 </div>
                                 <div className="card-body">
-                                    <button className="btn btn-danger" onClick={() => productDelete(product.id_producto, product.precio * product.cantidad)}><i class="fa-solid fa-trash-can"></i></button>
+                                    <button className="btn btn-danger" onClick={() => productDelete(product.id_producto, product.precio * product.cantidad)}><i className="fa-solid fa-trash-can"></i></button>
                                 </div>
                             </div>
 
