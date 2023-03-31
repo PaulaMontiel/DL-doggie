@@ -1,22 +1,43 @@
-import React from "react";
+import React, { useState } from 'react';
+import { iniciarSesionUsuario }from '../services/Connection.js';
+import { useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
 
 export default function Login(){
+    const navigate = useNavigate();
+   
+    const [formData, setFormData] = useState({
+        correo: '',
+        contrasena: ''
+      });
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(formData)
+        iniciarSesionUsuario(formData)
+        navigate("/");
+        // Code to submit form data to server
+    }
+    const handleChange = (event) => {
+        setFormData({
+          ...formData,
+          [event.target.name]: event.target.value
+        });
+      }
     return (
 
     <div className="log-back">
         <div className=" d-flex flex-column align-items-center ">
             <div className="st-log">
-                <form className=" d-flex flex-column align-items-center p-4 gap-3">
+                <form className=" d-flex flex-column align-items-center p-4 gap-3" onSubmit={handleSubmit}>
                     <span className="p-b-37">
                        <h3> Inicio de Sesión</h3>
                     </span>
                     <div className="" data-validate="Enter username or email">
-                        <input className="p-2 text-center" type="text" name="username" placeholder="username or email"/>
+                        <input className="p-2 text-center" type="text" name="correo" placeholder="correo" required value={formData.correo} onChange={handleChange}/>
                             <span className=""></span>
                     </div>
                     <div className="" data-validate="Enter password">
-                        <input className="text-center" type="password" name="pass" placeholder="password"/>
+                        <input className="text-center" type="password" name="contrasena" placeholder="password" required value={formData.contrasena} onChange={handleChange}/>
                             <span className="focus-input100"></span>
                     </div>
                     <div className="">
