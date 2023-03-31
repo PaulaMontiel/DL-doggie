@@ -76,8 +76,7 @@ export default function Gallery() {
                                     <img src={producto.img} alt={producto.nombre} className="card-img-top" />
                                     <div className="card-body">
                                         <h5 className="card-title">{producto.nombre}</h5>
-                                        <p className="card-title">${producto.precio}</p>
-                                        <p className="card-text">{producto.descripcion}</p>
+                                        <p className="card-title">{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(producto.precio)}</p>
                                         <button className="btn btn-outline-success btn-sm" onClick={() => productoDetails(producto.id_producto)}>Ver Más 👀</button>
                                         <button className="btn btn-outline-danger btn-sm" onClick={() => addToCart(producto)}>Agregar 🛒</button>
                                     </div>

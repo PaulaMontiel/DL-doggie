@@ -47,7 +47,7 @@ export default function Carro() {
                                     <h5 className="card-title">Cantidad: {product.cantidad}</h5>
                                 </div>
                                 <div className="card-body">
-                                    <h5 className="card-title">${product.precio * product.cantidad}</h5>
+                                    <h5 className="card-title">{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product.precio * product.cantidad)}</h5>
                                 </div>
                                 <div className="card-body">
                                     <button className="btn btn-danger" onClick={() => productDelete(product.id_producto, product.precio * product.cantidad)}><i className="fa-solid fa-trash-can"></i></button>

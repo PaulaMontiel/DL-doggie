@@ -47,8 +47,12 @@ const Products = ({ product }) => {
                                         <p className="card-text">{product.descripcion}</p>
                                     </div>
                                     <br />
+                                    <div className="gap-3">
+                                        <h6 className="card-text">Stock: {product.stock}</h6>
+                                    </div>
+                                    <br />
                                     <div>
-                                        <h6>Precio : $ {product.precio}</h6>
+                                        <h6>Precio {new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product.precio)}</h6>
                                     </div>
                                     <div>
                                         <button className="btn btn-outline-success btn-sm" onClick={() => goToGallery()}>Volver a la Galería</button>

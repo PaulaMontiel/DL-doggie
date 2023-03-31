@@ -7,8 +7,8 @@ import { BlobProvider } from '@react-pdf/renderer';
 import { useNavigate } from "react-router-dom";
 
 export default function Carrito() {
-    const { cart } = useContext(cartContext);
-    const { cost } = useContext(contextCost);
+    const { cart, setCart } = useContext(cartContext);
+    const { cost, setCost } = useContext(contextCost);
     const navigate = useNavigate();
     /*<PDFDownloadLink>
         <Boleta datos={{cart, cost}}/>
@@ -23,6 +23,8 @@ export default function Carrito() {
         if (url && url !== null) {
             const state = window.open(url, "_blank")
             if (state) {
+                setCart([]);
+                setCost(0);
                 navigate('/')
             }
         }

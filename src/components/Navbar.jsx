@@ -36,7 +36,7 @@ const Navbar = () => {
                     </div>
                     <div className="Nav-link">
                         <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/carrito" end>
-                            <i className="fa-solid fa-cart-shopping">  ${cost} </i>
+                            <i className="fa-solid fa-cart-shopping"> {new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(cost)} </i>
                         </NavLink>
                     </div>
                 </div>
