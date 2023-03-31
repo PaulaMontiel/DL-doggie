@@ -1,7 +1,12 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
+const logo = require('../assets/img/logo-page.png');
 
 const styles = StyleSheet.create({
+    imgLogo:{
+        width: '25%',
+        alignSelf: 'center'
+    },
     page: {
         fontFamily: 'Helvetica',
         fontSize: 11,
@@ -97,6 +102,7 @@ export default function BoletaPDF({ datos }) {
     return (
         <Document>
             <Page style={styles.page}>
+                <Image src={logo} style={styles.imgLogo} />
                 <Text style={styles.title}>Boleta de compra</Text>
                 <Text style={styles.header}>Fecha: {new Date().toLocaleDateString()}</Text>
                 <View style={styles.table}>

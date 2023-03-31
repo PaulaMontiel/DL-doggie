@@ -10,7 +10,7 @@ const Products = ({ product }) => {
     const navigate = useNavigate();
     const { cost, setCost } = useContext(contextCost);
     const { cart, setCart } = useContext(cartContext);
-
+    
     const goToGallery = () => {
         navigate(`/gallery`);
     };
@@ -19,7 +19,7 @@ const Products = ({ product }) => {
         var newCart = cart;
         const totalAmount = cost + product.precio;
         var foundIndex = cart.findIndex(x => x.id_producto === product.id_producto);
-        if (foundIndex!== -1) {
+        if (foundIndex !== -1) {
             let cantidad = newCart[foundIndex]['cantidad'];
             newCart[foundIndex]['cantidad'] = cantidad + 1;
             setCart([...newCart]);
