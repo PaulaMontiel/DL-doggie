@@ -13,6 +13,7 @@ import Login from "./views/Login.jsx";
 import UserRegistration from "./views/UserRegistration.jsx";
 import UserVsSeller from "./views/UserVsSeller.jsx";
 import './App.css';
+import 'alertifyjs/build/css/alertify.css';
 
 function App() {
 

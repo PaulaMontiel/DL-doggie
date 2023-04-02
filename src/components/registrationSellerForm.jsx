@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
 import "../assets/css/registration.css";
+import { postvendedor }from '../services/Connection.js';
+import { useNavigate } from "react-router-dom";
 
 
 function RegistrationForm() {
   const [formData, setFormData] = useState({
-    nombres: '',
-    apellidoPaterno: '',
-    apellidoMaterno: '',
-    rut: '',    
-    email: '',
-    password: '',
-    confirmpassword: '',
-    fechaNac: '',
-    sexo: '',
-    pais: '',
+    rut: '',
+    nombre: '',
+    apellido_paterno: '',
+    apellido_materno: '',
+    telefono: '',
+    correo: '',
+    fecha_ingreso: '',
+    region: '',
     ciudad: '',
-    celular: ''
+    comuna: '',
+    calle: '',
+    numero: '',
+    contrsana: ''  
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(formData)
+    postvendedor(formData)
     // Code to submit form data to server
   }
 
@@ -42,33 +47,27 @@ function RegistrationForm() {
                     <div>
                       <label>Nombres:</label>
                     </div>
-                    <input type="text" name="nombres" required value={formData.nombres} onChange={handleChange} />
+                    <input type="text" name="nombre" required value={formData.nombre} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
                     <label>Apellido Paterno:</label>
-                    <input type="text" name="apellidoPaterno" required value={formData.apellidoPaterno} onChange={handleChange} />
+                    <input type="text" name="apellido_paterno" required value={formData.apellido_paterno} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
                     <label>Apellido Materno:</label>
-                    <input type="text" name="apellidoMaterno" required value={formData.apellidoMaterno} onChange={handleChange} />
+                    <input type="text" name="apellido_materno" required value={formData.apellido_materno} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
                     <label>Rut:</label>
                     <input type="number" name="rut" required value={formData.rut} onChange={handleChange} />
                   </div>
-                  <div>
-                    <label>Fecha de Nacimiento:</label>
-                    <input type="date" name="fechaNac" required value={formData.fechaNac} onChange={handleChange} />
-                    
+                  <div className='col-es'>
+                    <label>region:</label>
+                    <input type="text" name="region" required value={formData.region} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                      <label className='gap-2'>Genero : </label>
-                      <input type="radio" name="gender" value="masculino" checked={formData.sexo === 'masculino'} onChange={handleChange} /> Masculino
-                      <input type="radio" name="gender" value="femenino" checked={formData.sexo === 'femenino'} onChange={handleChange} /> Femenino
-                  </div>
-                  <div className='col-es'>
-                    <label>Pais:</label>
-                    <input type="text" name="pais" required value={formData.pais} onChange={handleChange} />
+                    <label>Comuna:</label>
+                    <input type="text" name="Comuna" required value={formData.comuna} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
                     <label>Ciudad:</label>

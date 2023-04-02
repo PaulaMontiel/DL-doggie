@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { postUser }from '../services/Connection.js';
 import "../assets/css/registration.css";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -21,8 +22,8 @@ function RegistrationForm() {
     numero:'',
     descripcion:''
   });
-
-
+  const navigate = useNavigate();
+  navigate("/perfil");
 
 
   const handleSubmit = (event) => {
@@ -39,16 +40,8 @@ function RegistrationForm() {
     });
   }
 
-  function comprobarClave() {
-    let clave1 = document.getElementById("contrasena").value
-    let clave2 = document.getElementById("confirmpassword").value
 
-    if (clave1 === clave2) {
-       alert("Las dos claves son iguales...\nRealizaríamos las acciones del caso positivo")
-    } else {
-       alert("Las dos claves son distintas...\nRealizaríamos las acciones del caso negativo")
-    }
-}
+  
 
   return (
     <div className='container-fluid back-user'>
@@ -100,11 +93,11 @@ function RegistrationForm() {
                   <label>Contraseña:</label>
                   <input type="password" name="contrasena" required value={formData.contrasena} onChange={handleChange} />
                 </div>
-                <div className='col-es'>
+                {/* <div className='col-es'>
                   <label>Confirmar Contraseña:</label>
                   <input type="password" name="confirmpassword" required value={formData.confirmpassword} onChange={handleChange} />
                 </div> 
-                
+                 */}
               </div>
               <div className='d-flex flex-column gap-3 dir-col'>
               <h4>Datos Dirección</h4>
@@ -132,9 +125,6 @@ function RegistrationForm() {
                     <label>Descripción:</label>
                     <input type="text" name="descripcion" required value={formData.descripcion} onChange={handleChange} />
                   </div>
-
-                
-
               </div>
               <div className='d-flex  gap-2 dir-col'>
                   <div>
