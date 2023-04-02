@@ -6,7 +6,7 @@ const Galeria = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <Categorias></Categorias>
+            {/* <Categorias></Categorias> */}
             <Gallery></Gallery>
         </div>
     )
