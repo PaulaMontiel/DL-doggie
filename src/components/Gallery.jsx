@@ -1,7 +1,6 @@
 import "../assets/css/gallery.css";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useContext, useState } from "react";
 import contextProductos from "../producto_context";
 import cartContext from "../cart_context";
 import contextCost from "../total_amount_context";
@@ -11,9 +10,10 @@ export default function Gallery() {
     const navigate = useNavigate();
     const { cost, setCost } = useContext(contextCost);
     const { cart, setCart } = useContext(cartContext);
-
+    const [sort, setSort] = useState("UnClicked");
     // Data for Products
     const { products, setProducts } = useContext(contextProductos);
+    var productFiltered = [];
 
     const array = [
         fetch('https://backmarketdb.fly.dev/productos/listado')
@@ -28,10 +28,12 @@ export default function Gallery() {
                 if (response.status === "fulfilled") {
                     successArray.push(response);
                 }
-            }
-            )
-            const data = await Promise.allSettled(successArray.map(response => response.value.json()))
-            setProducts(data[0]);
+            })
+            const data = await Promise.allSettled(successArray.map(response => response.value.clone().json()))
+            productFiltered = data[0];
+            console.log(productFiltered);
+            setProducts(productFiltered);
+            console.log(products);
 
         } catch {
             console.error("Multiple fetch failed");
@@ -47,7 +49,7 @@ export default function Gallery() {
         var newCart = cart;
         const totalAmount = cost + product.precio;
         var foundIndex = cart.findIndex(x => x.id_producto === product.id_producto);
-        if (foundIndex!== -1) {
+        if (foundIndex !== -1) {
             let cantidad = newCart[foundIndex]['cantidad'];
             newCart[foundIndex]['cantidad'] = cantidad + 1;
             setCart([...newCart]);
@@ -65,9 +67,55 @@ export default function Gallery() {
             navigate(`/product/${id}`)
         }
     };
+
+    //metodo ordenar
+    const sortItems = () => {
+
+        if (sort === "Clicked") {
+            products.value.sort((a, b) => parseInt(a.precio) - parseInt(b.precio));
+            setSort("UnClicked");
+            console.log(sort);
+        } else if (sort === "" || sort === "UnClicked") {
+            products.value.sort((a, b) => parseInt(b.precio) - parseInt(a.precio));
+            setSort("Clicked");
+            console.log(sort);
+        }
+    };
+
+    const filters = { marca: ["BRAVERY"] };
+    const filterProducts = () => {
+        const filtered = (products.value || []).filter(product => {
+            return Object.keys(filters).reduce((acc, filter) => {
+                const filterValues = filters[filter];
+                const productValue = product[filter];
+
+                console.log(filterValues);
+                console.log(productValue);
+
+                //This line defines what is your match
+                const found = filterValues.find(fv => fv === productValue);
+                return acc && found;
+            }, true);
+        })
+        const filteredProducts = {status: 'fulfilled', value: filtered}
+        setProducts(filteredProducts)
+    }
+
     return (
         <section id="gallery">
             <div className="container">
+                <h1 className="titleGallery">Categoría Alimentos</h1>
+                <div>
+                    <span className="input-group-btn">
+                        <button
+                            className="btn"
+                            value={sort}
+                            onClick={sortItems}
+                            type="button">
+                            {sort === "Clicked" ? <i className="fa-solid fa-arrow-up-9-1"></i> : <i className="fa-solid fa-arrow-down-1-9"></i>}
+                        </button>
+                    </span>
+                </div>
                 <div className="row">
                     {products && products.hasOwnProperty('value') && products.value.length > 0 &&
                         products.value.map((producto) => (
@@ -76,7 +124,7 @@ export default function Gallery() {
                                     <img src={producto.img} alt={producto.nombre} className="card-img-top" />
                                     <div className="card-body">
                                         <h5 className="card-title">{producto.nombre}</h5>
-                                        <p className="card-title">{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(producto.precio)}</p>
+                                        <p className="card-title">{new Intl.NumberFormat('es-CL', { currency: 'CLP', style: 'currency' }).format(producto.precio)}</p>
                                         <button className="btn btn-outline-success btn-sm" onClick={() => productoDetails(producto.id_producto)}>Ver Más 👀</button>
                                         <button className="btn btn-outline-danger btn-sm" onClick={() => addToCart(producto)}>Agregar 🛒</button>
                                     </div>
