@@ -63,3 +63,7 @@ body{
 .gallery{
   margin: 20px;
 }
+.card-img-top{
+  height: 50vh;
+
+}

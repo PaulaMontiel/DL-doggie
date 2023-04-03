@@ -23,7 +23,7 @@ export default function GalleryMarcas() {
     
     };
     return (
-            <div className="container-fluid bg-dark">
+            <div className="container-fluid bg-dark m-5">
                 <div className="row justify-content-space-around">
                     <div  className=" d-flex flex-row gap-5">
                         <div className="logo bg-light ">

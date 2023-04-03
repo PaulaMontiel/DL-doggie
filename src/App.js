@@ -1,6 +1,7 @@
 import React from 'react';
 import MyProductContext from "./producto_context";
 import MyTotalAmountContext from "./total_amount_context";
+import CategoriaContext from "./categoria_context";
 import CartContext from "./cart_context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
@@ -17,7 +18,7 @@ import 'alertifyjs/build/css/alertify.css';
 
 function App() {
 
- 
+  const [categorias, setCategorias] = useState([]);
   const [cart, setCart] = useState([]);
   // const endpoint = '/front-dog-shp/product.json';
   const [cost, setCost] = useState(0);
@@ -28,6 +29,7 @@ function App() {
       <MyProductContext.Provider value={{products, setProducts}}>
         <MyTotalAmountContext.Provider value={{ cost, setCost }}>
         <CartContext.Provider value={{ cart, setCart }}>
+        <CategoriaContext.Provider value = {{ categorias, setCategorias }}>
           <BrowserRouter basename='front-dog-shp'>
             <Routes>
               <Route path="/" element={<Home /> }/>
@@ -40,6 +42,7 @@ function App() {
               <Route path="/UserVsSeller" element={<UserVsSeller/>} />
             </Routes>
           </BrowserRouter>
+          </CategoriaContext.Provider>
           </CartContext.Provider>
         </MyTotalAmountContext.Provider>
       </MyProductContext.Provider>

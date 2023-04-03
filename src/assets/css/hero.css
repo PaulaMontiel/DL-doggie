@@ -11,21 +11,33 @@
 }
 .img-hero{
   display: block;
-  width: 100vw;
-  height: 100vh;
-  object-fit: contain ;
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
  
 }
 .img-hero2{
   display: block;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   object-fit:contain ;
 }
 .img-hero3{
   display: block;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  object-fit: contain ;
+}
+.img-hero4{
+  display: block;
+  width: 100vw;
+  height: 100%;
+  object-fit: contain ;
+}
+.img-hero5{
+  display: block;
+  width: 100vw;
+  height: 100%;
   object-fit: contain ;
 }
 .item {

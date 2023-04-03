@@ -1,22 +1,23 @@
 import "../assets/css/gallery.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import contextProductos from "../producto_context";
 import cartContext from "../cart_context";
 import contextCost from "../total_amount_context";
 
 export default function Gallery() {
-
+    let location = useLocation();
     const navigate = useNavigate();
     const { cost, setCost } = useContext(contextCost);
     const { cart, setCart } = useContext(cartContext);
     const [sort, setSort] = useState("UnClicked");
+    const [categoria, setCategoria] = useState(0);
     // Data for Products
     const { products, setProducts } = useContext(contextProductos);
     var productFiltered = [];
 
     const array = [
-        fetch('https://backmarketdb.fly.dev/productos/listado')
+        fetch('https://backmarketdb.fly.dev/productos/listado'),
     ]
 
     async function makeRequests() {
@@ -31,9 +32,7 @@ export default function Gallery() {
             })
             const data = await Promise.allSettled(successArray.map(response => response.value.clone().json()))
             productFiltered = data[0];
-            console.log(productFiltered);
             setProducts(productFiltered);
-            console.log(products);
 
         } catch {
             console.error("Multiple fetch failed");
@@ -82,29 +81,28 @@ export default function Gallery() {
         }
     };
 
-    const filters = { marca: ["BRAVERY"] };
+    const filters = { id_categoria: [location.state.id] };
+
     const filterProducts = () => {
         const filtered = (products.value || []).filter(product => {
             return Object.keys(filters).reduce((acc, filter) => {
                 const filterValues = filters[filter];
                 const productValue = product[filter];
-
-                console.log(filterValues);
-                console.log(productValue);
-
                 //This line defines what is your match
                 const found = filterValues.find(fv => fv === productValue);
                 return acc && found;
             }, true);
         })
-        const filteredProducts = {status: 'fulfilled', value: filtered}
+        console.log(filtered)
+        const filteredProducts = { status: 'fulfilled', value: filtered }
+        console.log(filteredProducts);
         setProducts(filteredProducts)
     }
 
     return (
         <section id="gallery">
             <div className="container">
-                <h1 className="titleGallery">Categoría Alimentos</h1>
+                <h1 className="titleGallery">{location.state.categoria}</h1>
                 <div>
                     <span className="input-group-btn">
                         <button
