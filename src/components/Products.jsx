@@ -10,9 +10,14 @@ const Products = ({ product }) => {
     const navigate = useNavigate();
     const { cost, setCost } = useContext(contextCost);
     const { cart, setCart } = useContext(cartContext);
-    
+
     const goToGallery = () => {
-        navigate(`/gallery`);
+        navigate(`/gallery`, {
+            state: {
+                id: 0,
+                categoria: "Todos los Productos"
+            }
+        });
     };
 
     const addToCart = (product) => {
@@ -52,7 +57,7 @@ const Products = ({ product }) => {
                                     </div>
                                     <br />
                                     <div>
-                                        <h6>Precio {new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product.precio)}</h6>
+                                        <h6>Precio {new Intl.NumberFormat('es-CL', { currency: 'CLP', style: 'currency' }).format(product.precio)}</h6>
                                     </div>
                                     <div>
                                         <button className="btn btn-outline-success btn-sm" onClick={() => goToGallery()}>Volver a la Galería</button>

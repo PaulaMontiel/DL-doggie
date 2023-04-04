@@ -4,7 +4,7 @@ import { useEffect, useContext, useState } from "react";
 import contextProductos from "../producto_context";
 import cartContext from "../cart_context";
 import contextCost from "../total_amount_context";
-import PacmanLoader from "react-spinners/PacmanLoader";
+//import PacmanLoader from "react-spinners/PacmanLoader";
 
 export default function Gallery() {
     let location = useLocation();
@@ -98,7 +98,9 @@ export default function Gallery() {
 
     }
 
-    return isLoading ? <div className="pacman"><PacmanLoader color="#36d7b7" margin={0} ></PacmanLoader>.</div> :
+    //<div className="pacman"><PacmanLoader color="#36d7b7" margin={0} ></PacmanLoader>.</div>
+    return isLoading ?<div className="doggieDiv"><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><iframe title='gif' className='doggie doggie-iframe' src="https://giphy.com/embed/KAdqfMqoM5turRW9xs"></iframe></div>
+        :
         <section id="gallery">
             <div className="container">
                 {location !== null && location.hasOwnProperty('state') && location.state.hasOwnProperty('categoria') ? <h1 className="titleGallery">{location.state.categoria}</h1> :

@@ -12,7 +12,7 @@ const Product = ({id}) => {
 
     const searchProduct = ({ id }) => {
         // eslint-disable-next-line array-callback-return
-        products.value.forEach(producto => {
+        products.forEach(producto => {
             if (parseInt(producto.id_producto) === parseInt(id)) {
                 setProduct(producto);
             }

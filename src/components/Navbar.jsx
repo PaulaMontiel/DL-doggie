@@ -46,7 +46,7 @@ const Navbar = () => {
                 <span className="navbar-brand">
                     <img src={dl} alt="myIcon" width={200} />
                 </span>
-                <span>
+                {/* <span>
                     <input
                         type="search"
                         name=""
@@ -54,7 +54,7 @@ const Navbar = () => {
                         placeholder="buscar"
                         className="placeholderSearch p-2"
                     />
-                </span>
+                </span> */}
                 <button
                     className="navbar-toggler"
                     type="button"
