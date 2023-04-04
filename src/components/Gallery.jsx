@@ -11,13 +11,11 @@ export default function Gallery() {
     const navigate = useNavigate();
     const { cost, setCost } = useContext(contextCost);
     const { cart, setCart } = useContext(cartContext);
-    const [sort, setSort] = useState("UnClicked");
-    //const [categoria, setCategoria] = useState(0);
+    const [sort, setSort] = useState("Menor");
     // Data for Products
     const { products, setProducts } = useContext(contextProductos);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [isLoading, setLoading] = useState(true);
-    //let [color, setColor] = useState("#ffffff");
     var productsResponse = [];
 
     const makeRequests = () => {
@@ -42,7 +40,7 @@ export default function Gallery() {
 
     useEffect(() => {
         filterProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location, products]);
 
     const addToCart = (product) => {
@@ -68,14 +66,13 @@ export default function Gallery() {
         }
     };
 
-    //metodo ordenar
     const sortItems = () => {
-        if (sort === "Clicked") {
+        if (sort === "Mayor") {
             filteredProducts.sort((a, b) => parseInt(a.precio) - parseInt(b.precio));
-            setSort("UnClicked");
-        } else if (sort === "" || sort === "UnClicked") {
+            setSort("Menor");
+        } else if (sort === "" || sort === "Menor") {
             filteredProducts.sort((a, b) => parseInt(b.precio) - parseInt(a.precio));
-            setSort("Clicked");
+            setSort("Mayor");
         }
     };
 
@@ -107,19 +104,19 @@ export default function Gallery() {
                 {location !== null && location.hasOwnProperty('state') && location.state.hasOwnProperty('categoria') ? <h1 className="titleGallery">{location.state.categoria}</h1> :
                     <h1 className="titleGallery">{"Todos los Productos"}</h1>
                 }
-                <div>
-                    <span className="input-group-btn">
-                        <button
-                            className="btn"
-                            value={sort}
-                            onClick={sortItems}
-                            type="button">
-                            {sort === "Clicked" ? <i className="fa-solid fa-arrow-up-9-1"></i> : <i className="fa-solid fa-arrow-down-1-9"></i>}
-                        </button>
-                    </span>
+                <br />
+                <div className="product-list">
+                    <div className="product-list-filters">
+                        <label htmlFor="sort-by-select">Ordenar por Precio:</label>
+                        <select id="sort-by-select" value={sort} onChange={sortItems}>
+                            <option value="Menor">Menor a Mayor</option>
+                            <option value="Mayor">Mayor a Menor</option>
+                        </select>
+                    </div>
                 </div>
+                <br />
                 <div className="row">
-                    {filteredProducts && filteredProducts.length > 0 &&
+                    {filteredProducts && filteredProducts.length > 0 ?
                         filteredProducts.map((producto) => (
                             <div key={producto.id_producto} className="col-lg-4 mb-4">
                                 <div className="card">
@@ -132,10 +129,7 @@ export default function Gallery() {
                                     </div>
                                 </div>
                             </div>
-                        ))
-                    }
-                    {!filteredProducts && filteredProducts.length < 0 &&
-                        <div className="m-5">
+                        )) : <div className="m-5">
                             <h4 className="m-5">No Existen products para mostrar</h4>
                         </div>
                     }

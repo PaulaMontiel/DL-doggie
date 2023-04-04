@@ -86,3 +86,36 @@ x .grid-columns-5 {
   margin-left: auto;
   margin-right: auto;
 }
+
+.product-list {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.product-list-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.product-list-filters select {
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.product-list-items {
+  list-style: none;
+  padding: 0;
+}
+
+.product-list-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
