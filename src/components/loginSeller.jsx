@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import alertify from 'alertifyjs';
+const urlServer = process.env.REACT_APP_BASE_URL;
 import { useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
-const urlServer = process.env.REACT_APP_BASE_URL
 
+
+const urlServer = process.env.REACT_APP_BASE_URL
 export default function Login(){
     const navigate = useNavigate();
    
@@ -23,8 +25,9 @@ export default function Login(){
               navigate("/");
               leerToken()
             }
+           
         } catch (error) {         
-           alertify.error("Email o contraseña incorrecta");
+           alertify.error("Email o contraseña incorrecta"+" 🙁");
           console.log(error.message);
         }
       }
@@ -41,22 +44,15 @@ export default function Login(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const response = iniciarSesionUsuario(formData);
-        console.log(response);
-        if(response.statusCode === 200){
-            leerToken();
-            navigate("/");
-        }
-        //  navigate("/");
-        // Code to submit form data to server
+        iniciarSesionUsuario(formData);
     }
 
     const handleChange = (event) => {
         setFormData({
-        ...formData,
-        [event.target.name]: event.target.value
+          ...formData,
+          [event.target.name]: event.target.value
         });
-    }
+      }
 
     
     return (
@@ -66,7 +62,7 @@ export default function Login(){
             <div className="st-log">
                 <form className=" d-flex flex-column align-items-center p-4 gap-3" onSubmit={handleSubmit}>
                     <span className="p-b-37">
-                    <h3> Inicio de Sesión</h3>
+                       <h3> Inicio de Sesión</h3>
                     </span>
                     <div className="" data-validate="Enter username or email">
                         <input className="p-2 text-center" type="email" name="correo" placeholder="correo" required value={formData.correo} onChange={handleChange}/>

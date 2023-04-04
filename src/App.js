@@ -13,6 +13,7 @@ import Boleta from "./views/Boleta.jsx";
 import Login from "./views/Login.jsx";
 import UserRegistration from "./views/UserRegistration.jsx";
 import UserVsSeller from "./views/UserVsSeller.jsx";
+import SellerRegistration from "./views/SellerRegistration";
 import './App.css';
 import 'alertifyjs/build/css/alertify.css';
 import Publicaciones from './views/Publicaciones';
@@ -42,6 +43,7 @@ function App() {
               <Route path="/boleta" element={<Boleta />} />
               <Route path="/login" element={<Login/>} />
               <Route path="/userRegistration" element={<UserRegistration/>} />
+              <Route path="/SellerRegistration" element={<SellerRegistration/>} />
               <Route path="/UserVsSeller" element={<UserVsSeller/>} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/publicaciones" element={<Publicaciones />} />
