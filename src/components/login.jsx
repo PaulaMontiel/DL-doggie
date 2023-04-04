@@ -41,7 +41,14 @@ export default function Login(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        iniciarSesionUsuario(formData);
+        const response = iniciarSesionUsuario(formData);
+        console.log(response);
+        if(response.statusCode === 200){
+            leerToken();
+            navigate("/");
+        }
+        //  navigate("/");
+        // Code to submit form data to server
     }
 
     const handleChange = (event) => {

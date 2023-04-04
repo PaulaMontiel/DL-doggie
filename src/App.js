@@ -16,6 +16,8 @@ import UserVsSeller from "./views/UserVsSeller.jsx";
 import SellerRegistration from "./views/SellerRegistration";
 import './App.css';
 import 'alertifyjs/build/css/alertify.css';
+import Publicaciones from './views/Publicaciones';
+import Profile from './views/Profile';
 
 function App() {
 
@@ -42,6 +44,8 @@ function App() {
               <Route path="/userRegistration" element={<UserRegistration/>} />
               <Route path="/SellerRegistration" element={<SellerRegistration/>} />
               <Route path="/UserVsSeller" element={<UserVsSeller/>} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/publicaciones" element={<Publicaciones />} />
             </Routes>
           </BrowserRouter>
           </CategoriaContext.Provider>

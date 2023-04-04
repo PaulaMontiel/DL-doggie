@@ -3,7 +3,7 @@ import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/render
 const logo = require('../assets/img/logo-page.png');
 
 const styles = StyleSheet.create({
-    imgLogo:{
+    imgLogo: {
         width: '25%',
         alignSelf: 'center'
     },
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 });
 
 export default function BoletaPDF({ datos }) {
-    const { cart, cost } = datos
+    const { cart, cost } = datos;
     return (
         <Document>
             <Page style={styles.page}>
@@ -117,15 +117,15 @@ export default function BoletaPDF({ datos }) {
                         <View key={item.id_producto} style={styles.tableRow}>
                             <Text style={styles.tableCol}>{item.id_producto}</Text>
                             <Text style={styles.tableColDesc}>{item.nombre}</Text>
-                            <Text style={styles.tableCol}>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(item.precio)}</Text>
+                            <Text style={styles.tableCol}>{new Intl.NumberFormat('es-CL', { currency: 'CLP', style: 'currency' }).format(item.precio)}</Text>
                             <Text style={styles.tableCol}>{item.cantidad}</Text>
-                            <Text style={styles.tableCol}>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(item.cantidad * item.precio)}</Text>
+                            <Text style={styles.tableCol}>{new Intl.NumberFormat('es-CL', { currency: 'CLP', style: 'currency' }).format(item.cantidad * item.precio)}</Text>
                         </View>
                     ))}
                 </View>
                 <View style={styles.totalRow}>
                     <Text style={[styles.tableColDesc, styles.totalColDesc]}>Total:</Text>
-                    <Text style={[styles.tableCol, styles.totalColValue]}>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(cost)}</Text>
+                    <Text style={[styles.tableCol, styles.totalColValue]}>{new Intl.NumberFormat('es-CL', { currency: 'CLP', style: 'currency' }).format(cost)}</Text>
                 </View>
             </Page>
         </Document>
