@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import "../assets/css/registration.css";
-import { postvendedor }from '../services/Connection.js';
+import axios from 'axios'
+import alertify from 'alertifyjs';
 import { useNavigate } from "react-router-dom";
+const urlServer = process.env.REACT_APP_BASE_URL;
+
 
 
 function RegistrationForm() {
@@ -12,7 +15,6 @@ function RegistrationForm() {
     apellido_materno: '',
     telefono: '',
     correo: '',
-    fecha_ingreso: '',
     region: '',
     ciudad: '',
     comuna: '',
@@ -20,6 +22,22 @@ function RegistrationForm() {
     numero: '',
     contrasena: ''  
   });
+
+  const navigate = useNavigate();
+
+  async function postvendedor  (formData){
+    const endpoint = "vendedor/crear";
+    try {
+        const consulta = await axios.post(urlServer + endpoint, formData);
+        console.log(consulta)
+        alertify.success("Usuario registrado con éxito");
+        navigate("/login");
+      } catch (error) {
+        alertify.error("Algo salió mal ...");
+        console.log(error);
+      }
+}
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,89 +53,71 @@ function RegistrationForm() {
     });
   }
 
-  return (
-    <div className='container-fluid back-user'>
-      <div className="row align-content-center">
-        <div className='formulario p-5 st-lo'>
-          <h2 className='p-2'>Registro de usuario</h2>
-          <form className='form gap-2' onSubmit={handleSubmit}>
-                <div className='dir-col'>
-                  <h4>Datos Personales</h4>
-                  <div className='col-es'>
-                    <div>
-                      <label>Nombres:</label>
+  return(
+      <div className='container-fluid back-user'>
+        <div className="row align-content-center">
+          <div className='formulario p-5 st-lo'>
+            <h2 className='p-2'>Registro de Vendedor</h2>
+            <form className='form gap-2'  id="formulario" onSubmit={handleSubmit}>
+                  <div className='dir-col'>
+                    <h4>Datos Personales</h4>
+                    <div className='col-es'>
+                      <input type="text" name="nombre" placeholder=" Nombre" required value={formData.nombre} onChange={handleChange} />
                     </div>
-                    <input type="text" name="nombre" required value={formData.nombre} onChange={handleChange} />
-                  </div>
-                  <div className='col-es'>
-                    <label>Apellido Paterno:</label>
-                    <input type="text" name="apellido_paterno" required value={formData.apellido_paterno} onChange={handleChange} />
-                  </div>
-                  <div className='col-es'>
-                    <label>Apellido Materno:</label>
-                    <input type="text" name="apellido_materno" required value={formData.apellido_materno} onChange={handleChange} />
-                  </div>
-                  <div className='col-es'>
-                    <label>Rut:</label>
-                    <input type="number" name="rut" required value={formData.rut} onChange={handleChange} />
-                  </div>
-                  <div className='col-es'>
-                    <label>region:</label>
-                    <input type="text" name="region" required value={formData.region} onChange={handleChange} />
-                  </div>
-                  <div className='col-es'>
-                    <label>Comuna:</label>
-                    <input type="text" name="Comuna" required value={formData.comuna} onChange={handleChange} />
-                  </div>
-                  <div className='col-es'>
-                    <label>Ciudad:</label>
-                    <input type="text" name="ciudad" required value={formData.ciudad} onChange={handleChange} />
-                  </div>
-                  <div className='col-es'>
-                    <label>Celular:</label>
-                    <input type="tel" name="celular" required value={formData.celular} onChange={handleChange} />
-                  </div>
-                  <div>            
-                    <input className='button-submit' type="submit" value="Register" />
-                  </div>
-              </div>
-              <div className='d-flex flex-column gap-3 dir-col'>
-                <div>
+                    <div className='col-es'>
+                      <input type="text" name="apellido_paterno"  placeholder=" Apellido Paterno"  required value={formData.apellido_paterno} onChange={handleChange} />
+                    </div>
+                    <div className='col-es'>
+                      <input type="text" name="apellido_materno" placeholder=" Apellido Materno" required value={formData.apellido_materno} onChange={handleChange} />
+                    </div>
+                    <div className='col-es'>
+                      <input type="text" name="rut" placeholder=" Rut" required value={formData.rut} onChange={handleChange} />
+                    </div>
+                    <div className='col-es'>
+                   
+                      <input type="tel" name="telefono" placeholder=" Telefono"required value={formData.telefono} onChange={handleChange} />
+                    </div>
                     <h4>Informacion de la Cuenta</h4>
+                  <div className='col-es'>
+                    <input type="email" name="correo" placeholder=" Correo" required value={formData.correo} onChange={handleChange} />
+                  </div>
+                  <div className='col-es'>
+                    <input type="password" name="contrasena" placeholder=" Contraseña"required value={formData.contrasena} onChange={handleChange} />
+                  </div>
+  
+                </div>
+                <div className='d-flex flex-column gap-3 dir-col'>
+                <h4>Datos Dirección</h4>
                     <div className='col-es'>
-                      <label>Email:</label>
-                      <input type="email" name="email" required value={formData.email} onChange={handleChange} />
+                      <input type="text" name="region" placeholder=" Region" required value={formData.region} onChange={handleChange} />
                     </div>
                     <div className='col-es'>
-                      <label>Contraseña:</label>
-                      <input type="password" name="password" required value={formData.password} onChange={handleChange} />
+                      <input type="text" name="ciudad" placeholder=" Ciudad" required value={formData.ciudad} onChange={handleChange} />
                     </div>
                     <div className='col-es'>
-                      <label>Confirmar Contraseña:</label>
-                      <input type="password" name="confirmpassword" required value={formData.confirmpassword} onChange={handleChange} />
+                      <input type="text" name="comuna" placeholder=" Comuna" required value={formData.comuna} onChange={handleChange} />
+                    </div>
+                    <div className='col-es'>
+                      <input type="text" name="calle"  placeholder=" Calle" required value={formData.calle} onChange={handleChange} />
+                    </div>
+                    <div className='col-es'>
+                      <input type="text" name="numero" placeholder=" Numero" required value={formData.numero} onChange={handleChange} />
+                    </div>
+                    <div className='col-es'>
+                      <input type="text" name="descripcion" placeholder=" Referencia" required value={formData.descripcion} onChange={handleChange} />
+                    </div>
+                    <div>
+                      <input className='button-submit' type="submit" value="Register"  />
                     </div>
                 </div>
-                <div>
-                  <h4>Informacion de la Empresa</h4>
-                  <div className='col-es'>
-                    <label>Nombre Sociedad:</label>
-                    <input type="name" name="name" required value={formData.email} onChange={handleChange} />
-                  </div>
-                  <div className='col-es'>
-                    <label>Rut</label>
-                    <input type="number" name="number" required value={formData.password} onChange={handleChange} />
-                  </div>
-                  <div className='col-es'>
-                    <label>Confirmar Contraseña:</label>
-                    <input type="password" name="confirmpassword" required value={formData.confirmpassword} onChange={handleChange} />
-                  </div>
+                <div className='d-flex  gap-2 dir-col'>
+                    
                 </div>
-              </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default RegistrationForm;

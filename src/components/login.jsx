@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import alertify from 'alertifyjs';
-
 import { useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
-
-
 const urlServer = process.env.REACT_APP_BASE_URL
+
 export default function Login(){
     const navigate = useNavigate();
    
@@ -25,9 +23,8 @@ export default function Login(){
               navigate("/");
               leerToken()
             }
-           
         } catch (error) {         
-           alertify.error("Email o contraseña incorrecta"+" 🙁");
+           alertify.error("Email o contraseña incorrecta");
           console.log(error.message);
         }
       }
