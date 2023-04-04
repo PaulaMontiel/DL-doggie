@@ -37,11 +37,6 @@ export default function PublicacionesDet() {
         setPublicaciones(nuevosPublicaciones);
     };
 
-    // const calcularTotal = () => {
-    //     return publicacion.reduce((total, publicacion) => {
-    //         return total + publicacion.precio * publicacion.cantidad;
-    //     }, 0);
-    // };   
 
     return (
         <section className="back">
@@ -97,7 +92,5 @@ export default function PublicacionesDet() {
     );
 }
 
-
-// const PublicacionesAgregados = publicacion.filter((publicacion) => publicacion.cantidad > 0);
 
 

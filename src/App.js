@@ -17,6 +17,7 @@ import './App.css';
 import 'alertifyjs/build/css/alertify.css';
 import Publicaciones from './views/Publicaciones';
 import Profile from './views/Profile';
+import CrearPublicacion from './views/CrearPublicacion';
 
 function App() {
 
@@ -44,6 +45,8 @@ function App() {
               <Route path="/UserVsSeller" element={<UserVsSeller/>} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/publicaciones" element={<Publicaciones />} />
+              <Route path="/publicationForm" element={<CrearPublicacion/>} />
+              
             </Routes>
           </BrowserRouter>
           </CategoriaContext.Provider>

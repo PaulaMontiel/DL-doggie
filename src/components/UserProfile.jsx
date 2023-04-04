@@ -11,39 +11,56 @@ import axios from 'axios'
 import alertify from 'alertifyjs';
 const urlServer = process.env.REACT_APP_BASE_URL
 
-async function getUserProfile(token) {
-    const endpoint = 'usuario/${userId}';
-    try {
-      const response = await axios.get(urlServer + endpoint, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      return response.data;
-      
-    } catch (error) {
-      console.log(error);
-      console.log(endpoint)
-      alertify.error("Algo salió mal al obtener el perfil del usuario");
-    }
-  }
+// async function getUserProfile(token) {
+//     const endpoint = 'usuario/${userId}';
+//     try {
+//     const response = await axios.get(urlServer + endpoint, {
+//         headers: { Authorization: `Bearer ${token}` },
+//     });
+//     return response.data;
 
-export default function UserProfile() {
+//     } catch (error) {
+//     console.log(error);
+//     console.log(endpoint)
+//     alertify.error("Algo salió mal al obtener el perfil del usuario");
+//     }
+// }
+
+// const leerToken = () =>{
+//     let token = localStorage.getItem("token")
+//     console.log(token)
+//     const base64Url = token.split('.')[1];
+//     const payload = JSON.parse(atob(base64Url));
+//     const id  = payload.usuario.id_usuario;
+//     const nombre = payload.nombres.usuario
+//     console.log(payload)
+//     console.log(nombresUsuario)
+// }
+
+
+
+export default function UserProfile(payload) {
     const navigate = useNavigate();
-    const {user, setUser } = useContext(Context);
+    const { user, setUser } = useContext(Context);
     const [localUser, setLocalUser] = useState({});
 
     useEffect(() => {
         async function fetchUserData() {
-            const token = localStorage.getItem("token");
-            // const decodedToken = jwt_decode(token);
-            // // const userId = decodedToken.id_usuario
-            const data = await getUserProfile(token);
-            if (data) {
-                setLocalUser(data);
-            }
+            let token = localStorage.getItem("token")
+            console.log(token)
+            const base64Url = token.split('.')[1];
+            const payload = JSON.parse(atob(base64Url));
+            const id = payload.usuario.id_usuario;
+            const nombre = payload.nombre
+            console.log(payload)
+    
         }
+    
     
         fetchUserData();
     }, []);
+
+
 
     return (
 
