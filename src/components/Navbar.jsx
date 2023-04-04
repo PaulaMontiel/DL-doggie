@@ -116,7 +116,7 @@ const Navbar = () => {
                         <NavLink
                             className={setActiveClass}
                             style={{ color: "#F3EFE0" }}
-                            to="/login"
+                            to="/UserVsSellerLogin"
                             end
                         >
                             <i className="fa-solid  fa-user"> Iniciar Sesion </i>

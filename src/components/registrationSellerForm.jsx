@@ -31,7 +31,7 @@ function RegistrationForm() {
         const consulta = await axios.post(urlServer + endpoint, formData);
         console.log(consulta)
         alertify.success("Usuario registrado con éxito");
-        navigate("/login");
+        navigate("/loginSeller");
       } catch (error) {
         alertify.error("Algo salió mal ...");
         console.log(error);
