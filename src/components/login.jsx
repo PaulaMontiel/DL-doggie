@@ -24,7 +24,7 @@ export default function Login(){
     const handleSubmit = (event) => {
         event.preventDefault();
         const response = iniciarSesionUsuario(formData);
-        console.log(response);
+        console.log();
         if(response.statusCode === 200){
             leerToken();
             navigate("/");
