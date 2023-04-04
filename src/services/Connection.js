@@ -36,14 +36,20 @@ export const iniciarSesionUsuario = async (formData) => {
   const endpoint = "login";
   try {
     if (!formData.correo || !formData.contrasena) return alert("Email y password obligatorias");
-    const { data: token } = await axios.post(urlServer + endpoint, formData);
-    alertify.success('Usuario identificado con éxito ');
-    console.log(token)
-    localStorage.setItem("token", token.jwt_token);
-  //  setUsuario()
-   
-  } catch ({ response: { data: message } }) {
-     alertify.error(message + " 🙁");
-    console.log(message);
+    const { data } = await axios.post(urlServer + endpoint, formData);
+    console.log(data)
+    if (data.statusCode === 200){
+      alertify.success(data.message);
+      localStorage.setItem("token", data.jwt_token);
+    }
+    if(data.statusCode === 401){
+      alertify.error(data.message);
+    }
+    
+  
+  } catch (error) {
+    
+     alertify.error(error.message + " 🙁");
+    console.log(error.message);
   }
 };

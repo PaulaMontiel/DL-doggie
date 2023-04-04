@@ -10,19 +10,48 @@ export default function Login(){
         correo: '',
         contrasena: ''
       });
+
+    const leerToken = () =>{
+        let token = localStorage.getItem("token")
+        console.log(token)
+        const base64Url = token.split('.')[1];
+        const payload = JSON.parse(atob(base64Url));
+        const nombreUsuario  = payload.usuario.id_usuario;
+        console.log(payload)
+        console.log(nombreUsuario)
+    }
+
+    const navegation = () => {
+        let token = localStorage.getItem("token")
+        console.log(token)
+        if (token !== '') {
+            navigate("/");     
+        //    console.log("login fail")
+        }else{
+            navigate("/login");
+          ///  console.log("login correct")
+        }
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData)
         iniciarSesionUsuario(formData)
-        navigate("/");
+       leerToken()
+       navegation()
+      
+        //  navigate("/");
         // Code to submit form data to server
     }
+
     const handleChange = (event) => {
         setFormData({
           ...formData,
           [event.target.name]: event.target.value
         });
       }
+
+    
     return (
 
     <div className="log-back">
@@ -55,7 +84,7 @@ export default function Login(){
                             <i className="fa fa-facebook-f"></i>
                         </a>
                         <a href="/" className="p-2">
-                            <i class="fa-brands fa-google cloud-icon"></i>
+                            <i className="fa-brands fa-google cloud-icon"></i>
                         </a>
                     </div>
                     <div className="text-center">

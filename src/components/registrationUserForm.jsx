@@ -1,7 +1,27 @@
 import React, { useState } from 'react';
 import { postUser }from '../services/Connection.js';
 import "../assets/css/registration.css";
-import { useNavigate } from "react-router-dom";
+import { useForm } from '../hooks/validarFormUsuario.js';
+
+const initialForm = {
+  nombres: '',
+  apellido_paterno: '',
+  apellido_materno: '',
+  celular: '',
+  contrasena: '',
+  correo:'',
+  fecha_nacimiento:'',
+  sexo:'',
+  region:'',
+  ciudad:'',
+  comuna:'',
+  calle:'',
+  numero:'',
+  descripcion:''
+}
+
+const validationsForm = (form) => {}
+
 
 
 
@@ -22,23 +42,23 @@ function RegistrationForm() {
     numero:'',
     descripcion:''
   });
-  const navigate = useNavigate();
-  navigate("/perfil");
+  const { form, errors, loading, response, handleChange, handleBlur, handleSubmit } = useForm(initialForm, validationsForm)
 
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(formData)
-    postUser(formData)
-    // Code to submit form data to server
-  }
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   validarFormulario();
+  //   console.log(formData)
+  //   postUser(formData)
+  //   // Code to submit form data to server
+  // }
 
-  const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value
-    });
-  }
+  // const handleChange = (event) => {
+  //   setFormData({
+  //     ...formData,
+  //     [event.target.name]: event.target.value
+  //   });
+  // }
 
 
   
@@ -48,18 +68,18 @@ function RegistrationForm() {
       <div className="row align-content-center">
         <div className='formulario p-5 st-lo'>
           <h2 className='p-2'>Registro de usuario</h2>
-          <form className='form gap-2' onSubmit={handleSubmit}>
+          <form className='form gap-2'  id="formulario" onSubmit={handleSubmit}>
                 <div className='dir-col'>
                   <h4>Datos Personales</h4>
                   <div className='col-es'>
                     <div>
                       <label>Nombres:</label>
                     </div>
-                    <input type="text" name="nombres" required value={formData.nombres} onChange={handleChange} />
+                    <input type="text" name="nombres" placeholder=' Nombre' required value={formData.nombres} onChange={handleChange} onBlur={handleBlur} />
                   </div>
                   <div className='col-es'>
                     <label>Apellido Paterno:</label>
-                    <input type="text" name="apellido_paterno" required value={formData.apellido_paterno} onChange={handleChange} />
+                    <input type="text" name="apellido_paterno"  placeholder=' Apellido Paterno' required value={formData.apellido_paterno} onChange={handleChange} onChange={handleChange} onBlur={handleBlur} />
                   </div>
                   <div className='col-es'>
                     <label>Apellido Materno:</label>
