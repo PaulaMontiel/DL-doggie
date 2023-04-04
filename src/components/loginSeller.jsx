@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import alertify from 'alertifyjs';
+const urlServer = process.env.REACT_APP_BASE_URL;
 import { useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
-const urlServer = process.env.REACT_APP_BASE_URL
 
+
+const urlServer = process.env.REACT_APP_BASE_URL
 export default function Login(){
     const navigate = useNavigate();
    
@@ -23,8 +25,9 @@ export default function Login(){
               navigate("/");
               leerToken()
             }
+           
         } catch (error) {         
-           alertify.error("Email o contraseña incorrecta");
+           alertify.error("Email o contraseña incorrecta"+" 🙁");
           console.log(error.message);
         }
       }
@@ -41,14 +44,7 @@ export default function Login(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const response = iniciarSesionUsuario(formData);
-        console.log(response);
-        if(response.statusCode === 200){
-            leerToken();
-            navigate("/");
-        }
-        //  navigate("/");
-        // Code to submit form data to server
+        iniciarSesionUsuario(formData);
     }
 
     const handleChange = (event) => {
