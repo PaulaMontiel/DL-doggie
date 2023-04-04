@@ -67,6 +67,7 @@ export default function Login(){
                 <form className=" d-flex flex-column align-items-center p-4 gap-3" onSubmit={handleSubmit}>
                     <span className="p-b-37">
                        <h3> Inicio de Sesión</h3>
+                       <h3> Usaurio </h3>
                     </span>
                     <div className="" data-validate="Enter username or email">
                         <input className="p-2 text-center" type="email" name="correo" placeholder="correo" required value={formData.correo} onChange={handleChange}/>
