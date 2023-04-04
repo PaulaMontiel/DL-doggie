@@ -56,3 +56,18 @@ export const iniciarSesionUsuario = async (formData) => {
     return ({statusCode: 500, message: "Error Inesperado"});
   }
 };
+
+export async function getUserProfile(token) {
+  const endpoint = 'usuario/${userId}';
+  try {
+    const response = await axios.get(urlServer + endpoint, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+    
+  } catch (error) {
+    console.log(error);
+    console.log(endpoint)
+    alertify.error("Algo salió mal al obtener el perfil del usuario");
+  }
+}
