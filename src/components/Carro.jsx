@@ -11,7 +11,12 @@ export default function Carro() {
     const { cart, setCart } = useContext(cartContext);
     const { cost, setCost } = useContext(contextCost);
     const goToGallery = () => {
-        navigate(`/gallery`);
+        navigate(`/gallery`,{
+            state: {
+              id: 0,
+              categoria: "Todos los Productos"
+            }
+          });
     };
     const payProcess = () => {
         console.log('carrito')

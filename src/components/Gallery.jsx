@@ -4,6 +4,7 @@ import { useEffect, useContext, useState } from "react";
 import contextProductos from "../producto_context";
 import cartContext from "../cart_context";
 import contextCost from "../total_amount_context";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 export default function Gallery() {
     let location = useLocation();
@@ -11,29 +12,24 @@ export default function Gallery() {
     const { cost, setCost } = useContext(contextCost);
     const { cart, setCart } = useContext(cartContext);
     const [sort, setSort] = useState("UnClicked");
-    const [categoria, setCategoria] = useState(0);
+    //const [categoria, setCategoria] = useState(0);
     // Data for Products
     const { products, setProducts } = useContext(contextProductos);
-    var productFiltered = [];
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [isLoading, setLoading] = useState(true);
+    //let [color, setColor] = useState("#ffffff");
+    var productsResponse = [];
 
-    const array = [
-        fetch('https://backmarketdb.fly.dev/productos/listado'),
-    ]
-
-    async function makeRequests() {
+    const makeRequests = () => {
         try {
-            const responses = await Promise.allSettled(array);
-            const successArray = [];
-            // eslint-disable-next-line
-            responses.map(response => {
-                if (response.status === "fulfilled") {
-                    successArray.push(response);
-                }
-            })
-            const data = await Promise.allSettled(successArray.map(response => response.value.clone().json()))
-            productFiltered = data[0];
-            setProducts(productFiltered);
-
+            fetch('https://backmarketdb.fly.dev/productos/listado').then((res) => res.json())
+                .then((data) => {
+                    productsResponse = data;
+                    setProducts(productsResponse);
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 2000);
+                });
         } catch {
             console.error("Multiple fetch failed");
         }
@@ -43,6 +39,11 @@ export default function Gallery() {
         makeRequests();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    useEffect(() => {
+        filterProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location, products]);
 
     const addToCart = (product) => {
         var newCart = cart;
@@ -62,47 +63,50 @@ export default function Gallery() {
     }
 
     const productoDetails = (id) => {
-        if (products.value.length > 0) {
+        if (products.length > 0) {
             navigate(`/product/${id}`)
         }
     };
 
     //metodo ordenar
     const sortItems = () => {
-
         if (sort === "Clicked") {
-            products.value.sort((a, b) => parseInt(a.precio) - parseInt(b.precio));
+            filteredProducts.sort((a, b) => parseInt(a.precio) - parseInt(b.precio));
             setSort("UnClicked");
-            console.log(sort);
         } else if (sort === "" || sort === "UnClicked") {
-            products.value.sort((a, b) => parseInt(b.precio) - parseInt(a.precio));
+            filteredProducts.sort((a, b) => parseInt(b.precio) - parseInt(a.precio));
             setSort("Clicked");
-            console.log(sort);
         }
     };
 
-    const filters = { id_categoria: [location.state.id] };
+
 
     const filterProducts = () => {
-        const filtered = (products.value || []).filter(product => {
-            return Object.keys(filters).reduce((acc, filter) => {
-                const filterValues = filters[filter];
-                const productValue = product[filter];
-                //This line defines what is your match
-                const found = filterValues.find(fv => fv === productValue);
-                return acc && found;
-            }, true);
-        })
-        console.log(filtered)
-        const filteredProducts = { status: 'fulfilled', value: filtered }
-        console.log(filteredProducts);
-        setProducts(filteredProducts)
+        if (location.hasOwnProperty('state') && location.state.hasOwnProperty('id') && location.state.id !== 0) {
+            const filters = { id_categoria: [location.state.id] };
+            const filtered = (products || []).filter(product => {
+                return Object.keys(filters).reduce((acc, filter) => {
+                    const filterValues = filters[filter];
+                    const productValue = product[filter];
+                    //This line defines what is your match
+                    const found = filterValues.find(fv => fv === productValue);
+                    return acc && found;
+                }, true);
+            })
+            const filterProd = filtered;
+            setFilteredProducts(filterProd);
+        } else {
+            setFilteredProducts(products);
+        }
+
     }
 
-    return (
+    return isLoading ? <div className="pacman"><PacmanLoader color="#36d7b7" margin={0} ></PacmanLoader>.</div> :
         <section id="gallery">
             <div className="container">
-                <h1 className="titleGallery">{location.state.categoria}</h1>
+                {location !== null && location.hasOwnProperty('state') && location.state.hasOwnProperty('categoria') ? <h1 className="titleGallery">{location.state.categoria}</h1> :
+                    <h1 className="titleGallery">{"Todos los Productos"}</h1>
+                }
                 <div>
                     <span className="input-group-btn">
                         <button
@@ -115,8 +119,8 @@ export default function Gallery() {
                     </span>
                 </div>
                 <div className="row">
-                    {products && products.hasOwnProperty('value') && products.value.length > 0 &&
-                        products.value.map((producto) => (
+                    {filteredProducts && filteredProducts.length > 0 &&
+                        filteredProducts.map((producto) => (
                             <div key={producto.id_producto} className="col-lg-4 mb-4">
                                 <div className="card">
                                     <img src={producto.img} alt={producto.nombre} className="card-img-top" />
@@ -130,7 +134,7 @@ export default function Gallery() {
                             </div>
                         ))
                     }
-                    {!products && !products.hasOwnProperty('value') && products.value.length < 0 &&
+                    {!filteredProducts && filteredProducts.length < 0 &&
                         <div className="m-5">
                             <h4 className="m-5">No Existen products para mostrar</h4>
                         </div>
@@ -138,5 +142,4 @@ export default function Gallery() {
                 </div>
             </div>
         </section>
-    );
 }
