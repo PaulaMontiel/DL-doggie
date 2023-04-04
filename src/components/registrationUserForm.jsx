@@ -1,26 +1,8 @@
 import React, { useState } from 'react';
-import { postUser }from '../services/Connection.js';
 import "../assets/css/registration.css";
-import { useForm } from '../hooks/validarFormUsuario.js';
-
-const initialForm = {
-  nombres: '',
-  apellido_paterno: '',
-  apellido_materno: '',
-  celular: '',
-  contrasena: '',
-  correo:'',
-  fecha_nacimiento:'',
-  sexo:'',
-  region:'',
-  ciudad:'',
-  comuna:'',
-  calle:'',
-  numero:'',
-  descripcion:''
-}
-
-const validationsForm = (form) => {}
+import axios from 'axios';
+import alertify from 'alertifyjs';
+const urlServer = process.env.REACT_APP_BASE_URL
 
 
 
@@ -42,23 +24,34 @@ function RegistrationForm() {
     numero:'',
     descripcion:''
   });
-  const { form, errors, loading, response, handleChange, handleBlur, handleSubmit } = useForm(initialForm, validationsForm)
+
+   async function  postUser (formData){
+    const endpoint = "usuario/crear";
+    try {
+        const consulta = await axios.post(urlServer + endpoint, formData);
+        console.log(consulta)
+        alertify.success("Usuario registrado con éxito");
+      } catch (error) {
+        alertify.error("Algo salió mal ..."+" 🙁");
+        console.log(error);
+      }
+}
 
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   validarFormulario();
-  //   console.log(formData)
-  //   postUser(formData)
-  //   // Code to submit form data to server
-  // }
+   const handleSubmit = (event) => {
+    event.preventDefault();
 
-  // const handleChange = (event) => {
-  //   setFormData({
-  //     ...formData,
-  //     [event.target.name]: event.target.value
-  //   });
-  // }
+     console.log(formData)
+     postUser(formData)
+    // Code to submit form data to server
+  }
+
+   const handleChange = (event) => {
+     setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+   }
 
 
   
@@ -72,84 +65,63 @@ function RegistrationForm() {
                 <div className='dir-col'>
                   <h4>Datos Personales</h4>
                   <div className='col-es'>
-                    <div>
-                      <label>Nombres:</label>
-                    </div>
-                    <input type="text" name="nombres" placeholder=' Nombre' required value={formData.nombres} onChange={handleChange} onBlur={handleBlur} />
+                    <input type="text" name="nombres" placeholder=" Nombre" required value={formData.nombres} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                    <label>Apellido Paterno:</label>
-                    <input type="text" name="apellido_paterno"  placeholder=' Apellido Paterno' required value={formData.apellido_paterno} onChange={handleChange} onChange={handleChange} onBlur={handleBlur} />
+                    <input type="text" name="apellido_paterno"  placeholder=" Apellido Paterno"  required value={formData.apellido_paterno} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                    <label>Apellido Materno:</label>
-                    <input type="text" name="apellido_materno" required value={formData.apellido_materno} onChange={handleChange} />
+                    <input type="text" name="apellido_materno" placeholder=" Apellido Materno" required value={formData.apellido_materno} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                    <label>Rut:</label>
-                    <input type="text" name="rut" required value={formData.rut} onChange={handleChange} />
+                    <input type="text" name="rut" placeholder=" Rut" required value={formData.rut} onChange={handleChange} />
+                  </div>
+                  <div className='col-es'>
+                 
+                    <input type="tel" name="celular" placeholder=" Celular"required value={formData.celular} onChange={handleChange} />
                   </div>
                   <div>
-                    <label>Fecha de Nacimiento:</label>
-                    <input type="date" name="fecha_nacimiento" required value={formData.fecha_nacimiento} onChange={handleChange} />
-
+                    <input type="date" name="fecha_nacimiento" placeholder=" Fecha Nacimiento" required value={formData.fecha_nacimiento} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                      <label className='gap-2'>Genero : </label>
                       <input type="radio" name="sexo" value="masculino" checked={formData.sexo === 'masculino'} onChange={handleChange} /> Masculino
                       <input type="radio" name="sexo" value="femenino" checked={formData.sexo === 'femenino'} onChange={handleChange} /> Femenino
                   </div>
-                  
-                  <div className='col-es'>
-                    <label>Celular:</label>
-                    <input type="tel" name="celular" required value={formData.celular} onChange={handleChange} />
-                  </div>
                   <h4>Informacion de la Cuenta</h4>
                 <div className='col-es'>
-                  <label>Correo:</label>
-                  <input type="email" name="correo" required value={formData.correo} onChange={handleChange} />
+                  <input type="email" name="correo" placeholder=" Correo" required value={formData.correo} onChange={handleChange} />
                 </div>
                 <div className='col-es'>
-                  <label>Contraseña:</label>
-                  <input type="password" name="contrasena" required value={formData.contrasena} onChange={handleChange} />
+                  <input type="password" name="contrasena" placeholder=" Contraseña"required value={formData.contrasena} onChange={handleChange} />
                 </div>
-                {/* <div className='col-es'>
-                  <label>Confirmar Contraseña:</label>
-                  <input type="password" name="confirmpassword" required value={formData.confirmpassword} onChange={handleChange} />
-                </div> 
-                 */}
+
               </div>
               <div className='d-flex flex-column gap-3 dir-col'>
               <h4>Datos Dirección</h4>
                   <div className='col-es'>
-                    <label>region:</label>
-                    <input type="text" name="region" required value={formData.region} onChange={handleChange} />
+                    <input type="text" name="region" placeholder=" Region" required value={formData.region} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                    <label>Ciudad:</label>
-                    <input type="text" name="ciudad" required value={formData.ciudad} onChange={handleChange} />
+                    <input type="text" name="ciudad" placeholder=" Ciudad" required value={formData.ciudad} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                    <label>Comuna:</label>
-                    <input type="text" name="comuna" required value={formData.comuna} onChange={handleChange} />
+                    <input type="text" name="comuna" placeholder=" Comuna" required value={formData.comuna} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                    <label>Calle:</label>
-                    <input type="text" name="calle" required value={formData.calle} onChange={handleChange} />
+                    <input type="text" name="calle"  placeholder=" Calle" required value={formData.calle} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                    <label>numero:</label>
-                    <input type="text" name="numero" required value={formData.numero} onChange={handleChange} />
+                    <input type="text" name="numero" placeholder=" Numero" required value={formData.numero} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                    <label>Descripción:</label>
-                    <input type="text" name="descripcion" required value={formData.descripcion} onChange={handleChange} />
+                    <input type="text" name="descripcion" placeholder=" Referencia" required value={formData.descripcion} onChange={handleChange} />
                   </div>
-              </div>
-              <div className='d-flex  gap-2 dir-col'>
                   <div>
                     <input className='button-submit' type="submit" value="Register"  />
                   </div>
+              </div>
+              <div className='d-flex  gap-2 dir-col'>
+                  
               </div>
           </form>
         </div>

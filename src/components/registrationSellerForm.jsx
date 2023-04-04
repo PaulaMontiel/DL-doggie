@@ -18,7 +18,7 @@ function RegistrationForm() {
     comuna: '',
     calle: '',
     numero: '',
-    contrsana: ''  
+    contrasena: ''  
   });
 
   const handleSubmit = (event) => {
