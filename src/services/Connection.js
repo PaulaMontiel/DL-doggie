@@ -41,15 +41,18 @@ export const iniciarSesionUsuario = async (formData) => {
     if (data.statusCode === 200){
       alertify.success(data.message);
       localStorage.setItem("token", data.jwt_token);
+      return data;
     }
     if(data.statusCode === 401){
       alertify.error(data.message);
+      return data
     }
-    
+    return ({statusCode: 500, message: "Error Inesperado"})
   
   } catch (error) {
     
      alertify.error(error.message + " 🙁");
     console.log(error.message);
+    return ({statusCode: 500, message: "Error Inesperado"});
   }
 };

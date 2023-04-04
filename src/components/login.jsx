@@ -21,25 +21,14 @@ export default function Login(){
         console.log(nombreUsuario)
     }
 
-    const navegation = () => {
-        let token = localStorage.getItem("token")
-        console.log(token)
-        if (token !== '') {
-            navigate("/");     
-        //    console.log("login fail")
-        }else{
-            navigate("/login");
-          ///  console.log("login correct")
-        }
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(formData)
-        iniciarSesionUsuario(formData)
-       leerToken()
-       navegation()
-      
+        const response = iniciarSesionUsuario(formData);
+        console.log(response);
+        if(response.statusCode === 200){
+            leerToken();
+            navigate("/");
+        }
         //  navigate("/");
         // Code to submit form data to server
     }
@@ -62,7 +51,7 @@ export default function Login(){
                        <h3> Inicio de Sesión</h3>
                     </span>
                     <div className="" data-validate="Enter username or email">
-                        <input className="p-2 text-center" type="text" name="correo" placeholder="correo" required value={formData.correo} onChange={handleChange}/>
+                        <input className="p-2 text-center" type="email" name="correo" placeholder="correo" required value={formData.correo} onChange={handleChange}/>
                             <span className=""></span>
                     </div>
                     <div className="" data-validate="Enter password">
