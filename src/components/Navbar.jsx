@@ -30,6 +30,11 @@ const Navbar = () => {
                         </NavLink>
                     </div>
                     <div className="Nav-link">
+                        <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/gallery" end>
+                        <i className="fa-solid fa-shop">Tienda</i>
+                        </NavLink>
+                    </div>
+                    <div className="Nav-link">
                         <NavLink className={setActiveClass} style={{ color: '#F3EFE0' }} to="/login" end>
                             <i className="fa-solid  fa-user"> Iniciar Sesion </i>
                         </NavLink>

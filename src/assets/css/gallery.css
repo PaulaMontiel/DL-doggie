@@ -1,10 +1,14 @@
+.titleGallery{
+  color: #F3EFE0;
+  margin-top: 10px
+}
 body{
   background:#222222;
 }
 .galeria {
     display: grid;
     gap: 10px;
-  }
+  }x
   
   .grid-columns-5 {
     grid-template-columns: repeat(5, 1fr);
