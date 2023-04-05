@@ -3,14 +3,12 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Publicaciones from './Publicaciones';
 import "../assets/css/profile.css"
 import Avatar2 from "../assets/img/Avatar2.webp";
-import { useEffect, useState, useContext } from 'react';
-import Context from '../user_context';
-import { useNavigate } from 'react-router-dom';
 
-// import jwt_decode from "jsonwebtoken"
-import axios from 'axios'
-import alertify from 'alertifyjs';
-const urlServer = process.env.REACT_APP_BASE_URL
+import { useNavigate , useLocation} from 'react-router-dom';
+import { useEffect, useContext, useState } from "react";
+import Context from "../user_context";
+
+
 
 async function getUserProfile(token) {
     const endpoint = 'usuario/${userId}';
@@ -28,7 +26,9 @@ async function getUserProfile(token) {
   }
 
 export default function UserProfile() {
+
     const navigate = useNavigate();
+
     const { user, setUser } = useContext(Context);
     const [localUser, setLocalUser] = useState({});
 
@@ -46,6 +46,68 @@ export default function UserProfile() {
         fetchUserData();
     }, []);
 
+   
+
+    let location = useLocation();
+    const {user, setUser } = useContext(Context);
+    const [localUser, setLocalUser] = useState({});
+
+    console.log(location);
+    
+
+    let nombres = "";
+    let apellidoP = "";
+    let apellidoM = "";
+    let correo = "";
+    let celular = "";
+    let tipo = "";
+    let numero = "";
+    let ciudad = "";
+    let calle = "";
+
+
+    const getDireccion = async (formData) => {
+       const url = `https://backmarketdb.fly.dev/direccion/listado/${payload.usuario.id_usuario}`; // construye la URL
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                ciudad = data[0].ciudad
+                numero = data[0].numero
+                calle = data[0].calle
+               return data
+            })
+            .catch(error => {
+                console.error(error); // maneja el error
+            });
+    }
+
+    const leerToken = () =>{
+            let token = location.state.token
+            const base64Url = token.split('.')[1];
+            const payload = JSON.parse(atob(base64Url));
+            return payload
+    }
+    const payload =  leerToken()
+
+    if(payload.usuario.tipo === "usuario"){
+        const {direccionget} = getDireccion()
+        console.log(direccionget)
+        nombres = payload.usuario.nombres
+        apellidoP = payload.usuario.apellido_patermo
+        apellidoM = payload.usuario.apellido_materno
+        correo =  payload.usuario.correo
+        celular = payload.usuario.celular
+        tipo = payload.usuario.tipo
+        console.log(calle)
+    }
+    if(payload.usuario.tipo === "vendedor"){
+        console.log("vendedor")
+    }
+
+  
+   
+
+
     return (
 
         <section className="section-profile" style={{ backgroundColor: '#eee', opacity: 0.8 }}>
@@ -55,12 +117,10 @@ export default function UserProfile() {
                         <Card className="mb-4, shadow">
                             <Card.Body className="card-body text-center blur">
                                 <Card.Img src={Avatar2} alt="avatar" className="rounded-circle img-fluid" style={{ width: '150px' }} />
-                                <h5 className="my-3 fw-bold">{nombres}</h5>
-                                <p className="text-muted mb-1">{apellidoP}{apellidoM}</p>
-                                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                                <h5 className="my-3 fw-bold">{nombres} {apellidoP} {apellidoM}</h5>
                                 <div className="d-flex justify-content-center mb-2">
                                     <Button variant="primary" >Cerrar Sesion</Button>
-                                    <Button variant="outline-primary ms-1">Enviar Mensaje</Button>
+                                    {/* <Button variant="outline-primary ms-1">Enviar Mensaje</Button> */}
                                 </div>
                             </Card.Body>
                         </Card>

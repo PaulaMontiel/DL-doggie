@@ -14,11 +14,14 @@ import Login from "./views/Login.jsx";
 import UserRegistration from "./views/UserRegistration.jsx";
 import UserVsSeller from "./views/UserVsSeller.jsx";
 import SellerRegistration from "./views/SellerRegistration";
+import LoginSeller from "./views/LoginSeller"
 import './App.css';
 import 'alertifyjs/build/css/alertify.css';
 import Publicaciones from './views/Publicaciones';
 import Profile from './views/Profile';
 import CrearPublicacion from './views/CrearPublicacion';
+import UserVsSellerLogin from './views/UserVsSellerLogin'
+
 
 function App() {
 
@@ -41,14 +44,15 @@ function App() {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/carrito" element={<Carrito />} />
               <Route path="/boleta" element={<Boleta />} />
-              <Route path="/login" element={<Login/>} />
+              <Route path="/loginUsuario" element={<Login/>} />
+              <Route path="/loginSeller" element={<LoginSeller/>} />
               <Route path="/userRegistration" element={<UserRegistration/>} />
               <Route path="/SellerRegistration" element={<SellerRegistration/>} />
               <Route path="/UserVsSeller" element={<UserVsSeller/>} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/publicaciones" element={<Publicaciones />} />
               <Route path="/publicationForm" element={<CrearPublicacion/>} />
-              
+              <Route path="/UserVsSellerLogin" element={<UserVsSellerLogin />} />
             </Routes>
           </BrowserRouter>
           </CategoriaContext.Provider>
