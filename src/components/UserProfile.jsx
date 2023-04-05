@@ -5,11 +5,22 @@ import "../assets/css/profile.css"
 import Avatar2 from "../assets/img/Avatar2.webp";
 
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+
 
 
 export default function UserProfile() {
+
     const navigate = useNavigate();
    
+
+    let location = useLocation();
+    const {user, setUser } = useContext(Context);
+    const [localUser, setLocalUser] = useState({});
+
+    console.log(location);
+    
+
     let nombres = "";
     let apellidoP = "";
     let apellidoM = "";
@@ -37,7 +48,7 @@ export default function UserProfile() {
     }
 
     const leerToken = () =>{
-            let token = localStorage.getItem("token")
+            let token = location.state.token
             const base64Url = token.split('.')[1];
             const payload = JSON.parse(atob(base64Url));
             return payload

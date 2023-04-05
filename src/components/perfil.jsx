@@ -1,7 +1,10 @@
 import React from "react";
 import "../assets/css/perfil.css";
+import { useLocation } from "react-router-dom";
 
 export default function Perfil() {
+    let location = useLocation();
+    console.log(location);
     return (
 
         <div className="container-fluid doggie-bck" >
