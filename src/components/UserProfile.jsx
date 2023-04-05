@@ -10,6 +10,11 @@ import { useLocation } from 'react-router-dom';
 export default function UserProfile() {
     let location = useLocation();
 
+
+    console.log(location);
+    
+
+
     let nombres = "";
     let apellidoP = "";
     let apellidoM = "";
