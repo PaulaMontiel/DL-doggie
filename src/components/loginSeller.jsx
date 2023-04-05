@@ -6,6 +6,7 @@ import "../assets/css/login.css";
 
 export default function LoginSeller(){
     const navigate = useNavigate();
+   
     const urlServer = process.env.REACT_APP_BASE_URL
    
     const [formData, setFormData] = useState({

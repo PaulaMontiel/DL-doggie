@@ -1,12 +1,11 @@
 import Navbar from "../components/Navbar.jsx";
-import PublicacionesDet from "../components/PublicacionesDet.jsx";
+import Publicaciones from "../components/Publicaciones.jsx";
 
-export default function Publicaciones() {
+export default function Publicacion({id}) {
     
     return (
         <>
-            <Navbar></Navbar>
-            <PublicacionesDet></PublicacionesDet>
+            <Publicaciones id = {id}></Publicaciones>
         </>
     );
 }

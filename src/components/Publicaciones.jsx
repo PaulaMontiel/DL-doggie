@@ -1,9 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
 import '../assets/css/publicaciones.css';
 
-export default function Publicaciones() {
-    const [publicacion, setPublicaciones] = useState([
+export default function Publicaciones({id}) {
+    const [publicaciones, setPublicaciones] = useState([]);
+    const userId = id;
+    console.log(userId);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await fetch("https://backmarketdb.fly.dev/productos/mostrar/" + userId);
+                const data = await response.json();
+                setPublicaciones([...data]);
+                console.log(publicaciones);
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+            }
+        }
+        fetchData();
+        // eslint-disable-next-line
+    }, [setPublicaciones]);
+    
+    /*const [publicacion, setPublicaciones] = useState([
         {
             id: 1,
             nombre: "Producto 1",
@@ -31,7 +50,7 @@ export default function Publicaciones() {
             stock: 2,
             cantidad: 0,
         },
-    ]);
+    ]);*/
 
 
 
@@ -52,14 +71,10 @@ export default function Publicaciones() {
                     </tr>
                 </thead>
                 <tbody>
-                    {publicacion.map((publicacion) => (
+                    {publicaciones.map((publicacion) => (
                         <tr key={publicacion.id}>
                             <td>{publicacion.id}</td>
                             <td>{publicacion.nombre}</td>
-                            <td>{publicacion.descripcion}</td>
-                            <td>
-                                <img src={publicacion.imagen} alt={publicacion.nombre} width="50" />
-                            </td>
                             <td>{publicacion.precio}</td>
                             <td>{publicacion.stock}</td>
                             
