@@ -10,9 +10,42 @@ import Context from "../user_context";
 
 
 
+async function getUserProfile(token) {
+    const endpoint = 'usuario/${userId}';
+    try {
+      const response = await axios.get(urlServer + endpoint, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data;
+      
+    } catch (error) {
+      console.log(error);
+      console.log(endpoint)
+      alertify.error("Algo salió mal al obtener el perfil del usuario");
+    }
+  }
+
 export default function UserProfile() {
 
     const navigate = useNavigate();
+
+    const { user, setUser } = useContext(Context);
+    const [localUser, setLocalUser] = useState({});
+
+    useEffect(() => {
+        async function fetchUserData() {
+            const token = localStorage.getItem("token");
+            // const decodedToken = jwt_decode(token);
+            // // const userId = decodedToken.id_usuario
+            const data = await getUserProfile(token);
+            if (data) {
+                setLocalUser(data);
+            }
+        }
+    
+        fetchUserData();
+    }, []);
+
    
 
     let location = useLocation();
@@ -73,6 +106,7 @@ export default function UserProfile() {
 
   
    
+
 
     return (
 
