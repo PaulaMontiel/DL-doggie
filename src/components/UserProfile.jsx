@@ -9,10 +9,48 @@ import Context from "../user_context";
 
 
 
+async function getUserProfile(token) {
+    const endpoint = 'usuario/${userId}';
+    try {
+      const response = await axios.get(urlServer + endpoint, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data;
+      
+    } catch (error) {
+      console.log(error);
+      console.log(endpoint)
+      alertify.error("Algo salió mal al obtener el perfil del usuario");
+    }
+  }
+
 export default function UserProfile() {
     const [isLoading, setLoading] = useState(true);
     const navigate = useNavigate();
+
     const [direccion, setDireccion] = useState({})
+
+
+    const { user, setUser } = useContext(Context);
+    const [localUser, setLocalUser] = useState({});
+
+    useEffect(() => {
+        async function fetchUserData() {
+            const token = localStorage.getItem("token");
+            // const decodedToken = jwt_decode(token);
+            // // const userId = decodedToken.id_usuario
+            const data = await getUserProfile(token);
+            if (data) {
+                setLocalUser(data);
+            }
+        }
+    
+        fetchUserData();
+    }, []);
+
+   
+
+
     let location = useLocation();
 
     let nombres = "";
@@ -83,8 +121,17 @@ export default function UserProfile() {
         }
     }
 
+
     return 
         isLoading ?<div className="doggieDiv mt-5"><iframe title='gif' className='doggie doggie-iframe' src="https://giphy.com/embed/KAdqfMqoM5turRW9xs"></iframe></div>:
+
+  
+   
+
+
+    return (
+
+
         <section className="section-profile" style={{ backgroundColor: '#eee', opacity: 0.8 }}>
             <Container className="py-5">
                 <Row style={{ marginTop: 1 }}>
