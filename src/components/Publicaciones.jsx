@@ -4,24 +4,38 @@ import '../assets/css/publicaciones.css';
 
 export default function Publicaciones({id}) {
     const [publicaciones, setPublicaciones] = useState([]);
-    const userId = id;
+    const [compras, setCompras] = useState([]);
+    const userId = id[0];
+    const userType = id[1]
     console.log(userId);
+    console.log(userType);
 
     useEffect(() => {
         async function fetchData() {
-            try {
-                const response = await fetch("https://backmarketdb.fly.dev/productos/mostrar/" + userId);
-                const data = await response.json();
-                setPublicaciones([...data]);
-                console.log(publicaciones);
-            } catch (error) {
-                console.error("Error fetching categories:", error);
+            if (userType === 'vendedor') {
+                try {
+                    const response = await fetch("https://backmarketdb.fly.dev/productos/mostrar/" + userId);
+                    const data = await response.json();
+                    setPublicaciones([...data]);
+                    console.log(data);
+                } catch (error) {
+                    console.error("Error fetching prooducts:", error);
+                }
+            } else if (userType === "usuario") {
+                /*try {
+                    const response = await fetch("https://backmarketdb.fly.dev/productos/mostrar/" + userId);
+                    const data = await response.json();
+                    setPublicaciones([...data]);
+                    console.log(publicaciones);
+                } catch (error) {
+                    console.error("Error fetching prooducts:", error);
+                }*/
             }
         }
         fetchData();
         // eslint-disable-next-line
     }, [setPublicaciones]);
-    
+
     /*const [publicacion, setPublicaciones] = useState([
         {
             id: 1,
@@ -59,25 +73,24 @@ export default function Publicaciones({id}) {
 
     return (
         <>
-            <Table striped bordered hover style={{ backgroundColor: "transparent", borderRadius: "20px", overflow: "hidden" }}>
+            <Table striped bordered hover style={{ backgroundColor: "lightblue", opacity: "0,5", borderRadius: "20px", overflow: "hidden" }}>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Id Producto</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
-                        <th>Imagen</th>
                         <th>Precio</th>
                         <th>Stock</th>
                     </tr>
                 </thead>
                 <tbody>
                     {publicaciones.map((publicacion) => (
-                        <tr key={publicacion.id}>
-                            <td>{publicacion.id}</td>
+                        <tr key={publicacion.id_producto}>
+                            <td>{publicacion.id_producto}</td>
                             <td>{publicacion.nombre}</td>
+                            <td>{publicacion.descripcion}</td>
                             <td>{publicacion.precio}</td>
                             <td>{publicacion.stock}</td>
-                            
                         </tr>
                     ))}
                 </tbody>

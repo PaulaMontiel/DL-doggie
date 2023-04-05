@@ -3,14 +3,12 @@ import "../assets/css/registrationP.css";
 import axios from 'axios'
 import alertify from 'alertifyjs';
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 const urlServer = process.env.REACT_APP_BASE_URL;
 
 
 
 function CrearPublicacion() {
     const [id, setId] = useState(0);
-    let location = useLocation();
     const [formData, setFormData] = useState({
         nombre: '',
         descripcion: '',
@@ -21,8 +19,27 @@ function CrearPublicacion() {
         marca: '',
         id_vendedor: '',
         id_categoria: ''
-        
+
     });
+    const [token, setToken] = useState('');
+
+    function hasJWT() {
+        let flag = false;
+        //check user has JWT token
+        localStorage.getItem("token") ? flag = true : flag = false
+        const token = localStorage.getItem("token");
+        setToken(token);
+        console.log(token)
+        if (!flag) {
+            localStorage.clear();
+            navigate(`/`)
+            window.location.reload(false);
+        }
+    }
+
+    useEffect(() => {
+        hasJWT()
+    }, []);
 
     const navigate = useNavigate();
 
@@ -33,11 +50,15 @@ function CrearPublicacion() {
             formData.precio = parseInt(formData.precio)
             formData.stock = parseInt(formData.stock)
             console.log("entro al try")
-            console.log(urlServer + endpoint)   
+            console.log(urlServer + endpoint)
             const consulta = await axios.post(urlServer + endpoint, formData);
             console.log(consulta)
             alertify.success("Publicacion creada con éxito");
-            navigate("/publicacionesDet");
+            navigate(`/profile`, {
+                state: {
+                    token: token
+                }
+            })
         } catch (error) {
             alertify.error("Algo salió mal ...");
             console.log(error);
@@ -67,12 +88,12 @@ function CrearPublicacion() {
         // actualizar la propiedad 'categoria' en el estado 'formData'
         setFormData({
             ...formData,
-            id_categoria: parseInt(event.target.value) 
+            id_categoria: parseInt(event.target.value)
         });
     }
 
-    
-    const leerToken = () =>{
+
+    const leerToken = () => {
         let token = localStorage.getItem("token")
         console.log(token)
         const base64Url = token.split('.')[1];
@@ -83,9 +104,9 @@ function CrearPublicacion() {
 
     useEffect(() => {
         leerToken()
-    
+
     }, []);
-    
+
 
     // async function getUserProfile(token) {
     //     const endpoint = `usuario/${userId}`;
@@ -94,7 +115,7 @@ function CrearPublicacion() {
     //             headers: { Authorization: `Bearer ${token}` },
     //         });
     //         return response.data;
-    
+
     //     } catch (error) {
     //         console.log(error);
     //         console.log(endpoint)
@@ -102,7 +123,7 @@ function CrearPublicacion() {
     //     }
     // }
 
-    
+
     return (
         <div className='container-fluid back-user'>
             <div className="row align-content-center">
@@ -123,7 +144,7 @@ function CrearPublicacion() {
                             <div className='col-es'>
                                 <input type="number" name="stock" placeholder=" Stock" required value={formData.stock} onChange={handleChange} />
                             </div>
-                            
+
                             <div className='col-es'>
                                 <input type="text" name="marca" placeholder=" Marca" required value={formData.marca} onChange={handleChange} />
                             </div>

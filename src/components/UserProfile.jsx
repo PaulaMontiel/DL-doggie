@@ -3,17 +3,14 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Publicaciones from '../views/Publicaciones';
 import "../assets/css/profile.css"
 import Avatar2 from "../assets/img/Avatar2.webp";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
 export default function UserProfile() {
     let location = useLocation();
-
-
+    const navigate = useNavigate();
     console.log(location);
-    
-
 
     let nombres = "";
     let apellidoP = "";
@@ -24,7 +21,6 @@ export default function UserProfile() {
     let numero = "";
     let region = "";
     let ciudad = "";
-    let comuna = "";
     let calle = "";
     let id = 0;
 
@@ -47,7 +43,6 @@ export default function UserProfile() {
         tipo = payload.usuario.tipo
         region = payload.usuario.region
         ciudad = payload.usuario.ciudad
-        comuna = payload.usuario.comuna
         calle = payload.usuario.calle
         numero = payload.usuario.numero
         console.log(calle)
@@ -63,12 +58,14 @@ export default function UserProfile() {
         tipo = payload.usuario.tipo
         region = payload.usuario.region
         ciudad = payload.usuario.ciudad
-        comuna = payload.usuario.comuna
         calle = payload.usuario.calle
         numero = payload.usuario.numero
         console.log("vendedor")
     }
 
+    const irPublicacion = () => {
+        navigate(`/publicationForm`)
+    }
 
 
 
@@ -116,6 +113,9 @@ export default function UserProfile() {
                                         <h6 className="mb-0 fw-bold">{calle} {numero}, {ciudad}, región de {region} </h6>
                                     </Col>
                                 </Row>
+                                <div className="d-flex justify-content-center mb-2 mt-3">
+                                    <Button className="btn-colors" variant="primary" onClick={() => irPublicacion()}>Añadir Productos</Button>
+                                </div>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -142,7 +142,7 @@ export default function UserProfile() {
                         </Card>
                         <Row>
                             <Col md={12} style={{ marginTop: "20px" }}>
-                                <Publicaciones id={1}></Publicaciones>
+                                <Publicaciones id={[id=id,tipo=tipo]}></Publicaciones>
                             </Col>
 
                         </Row>

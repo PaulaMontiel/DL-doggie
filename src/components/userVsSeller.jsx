@@ -24,9 +24,9 @@ export default function UserVsSeller(){
     return (
 
     <div className="container-fluid log-back">
-        <div className=" d-flex flex-column align-items-center ">
-            <div className="st-login">
-                <form className=" d-flex flex-column align-items-center m-5 p-5 gap-3">
+        <div className=" d-flex flex-column align-items-center justify-content-center ">
+            <div className="st-login mt-4">
+                <form className=" d-flex flex-column align-items-center m-5 p-4 gap-3">
                     <span className="d-flex">
                        <h3>Registro Usuario</h3>
                     </span>
