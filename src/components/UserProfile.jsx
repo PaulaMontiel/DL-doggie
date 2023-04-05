@@ -211,5 +211,5 @@ export default function UserProfile() {
                 </Row>
             </Container>
         </section>
-    
+    )
 }
