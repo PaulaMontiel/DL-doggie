@@ -122,10 +122,7 @@ export default function UserProfile() {
     }
 
 
-    return 
-        isLoading ?<div className="doggieDiv mt-5"><iframe title='gif' className='doggie doggie-iframe' src="https://giphy.com/embed/KAdqfMqoM5turRW9xs"></iframe></div>:
-
-  
+   
    
 
 
