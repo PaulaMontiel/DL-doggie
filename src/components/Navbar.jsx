@@ -150,8 +150,17 @@ const Navbar = () => {
                                 to="/UserVsSellerLogin"
                                 end
                             >
-                                <i className="fa-solid  fa-user"> Iniciar Sesion / Registrate </i>
-                            </NavLink> </div> :
+                                <i className="fa-solid  fa-user"> Iniciar Sesion </i>
+                            </NavLink> 
+                            <NavLink
+                                className={setActiveClass}
+                                style={{ color: "#F3EFE0" }}
+                                to="/UserVsSeller"
+                                end
+                            >
+                                <i className="fa-solid  fa-user"> Registrate </i>
+                            </NavLink>
+                            </div> :
                         <div className="Nav-link ">
                             <i className="fa-solid  fa-user" onClick={() => irPerfil()}> Mi Perfil </i>
                             <div className="ms-3">
