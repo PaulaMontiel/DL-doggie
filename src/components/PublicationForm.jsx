@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import "../assets/css/registrationP.css";
+import axios from 'axios'
+import alertify from 'alertifyjs';
+import { useNavigate } from "react-router-dom";
+const urlServer = process.env.REACT_APP_BASE_URL;
 
 function CrearPublicacion() {
     const [formData, setFormData] = useState({
@@ -20,6 +24,7 @@ function CrearPublicacion() {
         event.preventDefault();
         console.log(formData);
         console.log(selectedCategoria);
+        postPublicacion(formData)
         // Code to submit form data to server
     }
 
@@ -32,6 +37,21 @@ function CrearPublicacion() {
 
     const handleCategoriaSelect = (event) => {
         setSelectedCategoria(event.target.textContent);
+    }
+
+    const navigate = useNavigate();
+
+    async function postPublicacion(formData) {
+        const endpoint = "publicacion/crear";
+        try {
+            const consulta = await axios.post(urlServer + endpoint, formData);
+            console.log(consulta)
+            alertify.success("Publicacion creada con éxito");
+            navigate("/login");
+        } catch (error) {
+            alertify.error("Algo salió mal ...");
+            console.log(error);
+        }
     }
 
     return (
