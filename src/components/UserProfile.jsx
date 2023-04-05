@@ -49,8 +49,6 @@ export default function UserProfile() {
    
 
     let location = useLocation();
-    const {user, setUser } = useContext(Context);
-    const [localUser, setLocalUser] = useState({});
 
     console.log(location);
     
