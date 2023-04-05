@@ -56,7 +56,7 @@ const Navbar = () => {
         })
     }
 
-    const irPerfil = (datos) => {
+    const irPerfil = () => {
         navigate(`/profile`, {
             state: {
                 token: token
