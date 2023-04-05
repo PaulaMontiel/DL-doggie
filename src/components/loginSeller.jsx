@@ -4,7 +4,7 @@ import alertify from 'alertifyjs';
 import { useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
 
-export default function Login(){
+export default function LoginSeller(){
     const navigate = useNavigate();
     const urlServer = process.env.REACT_APP_BASE_URL
    
@@ -12,11 +12,13 @@ export default function Login(){
         correo: '',
         contrasena: ''
       });
-
-      const iniciarSesionUsuario = async (formData) => {
-        const endpoint = "login";
+ 
+      const iniciarSesionvendedor = async (formData) => {
+        const endpoint = "loginSeller";
+       
         try { 
            const { data } = await axios.post(urlServer + endpoint, formData);
+           console.log(data)
             if (data.statusCode === 200){
               alertify.success(data.message);
               localStorage.setItem("token", data.jwt_token);
@@ -25,7 +27,7 @@ export default function Login(){
             }
            
         } catch (error) {         
-           alertify.error("Email o contraseña incorrecta"+" 🙁");
+           alertify.error("Email o contraseña incorrecta 🙁");
           console.log(error.message);
         }
       }
@@ -42,7 +44,7 @@ export default function Login(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        iniciarSesionUsuario(formData);
+        iniciarSesionvendedor(formData);
     }
 
     const handleChange = (event) => {
@@ -61,7 +63,7 @@ export default function Login(){
                 <form className=" d-flex flex-column align-items-center p-4 gap-3" onSubmit={handleSubmit}>
                     <span className="p-b-37">
                        <h3> Inicio de Sesión</h3>
-                       <h3> Vendedor</h3>
+                       <h3> Vendedor </h3>
                     </span>
                     <div className="" data-validate="Enter username or email">
                         <input className="p-2 text-center" type="email" name="correo" placeholder="correo" required value={formData.correo} onChange={handleChange}/>
