@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/css/navbar.css";
 import dl from "../assets/img/dl-store.jpeg";
@@ -15,18 +15,6 @@ const Navbar = () => {
     const navigate = useNavigate();
     const { categorias, setCategorias } = useContext(contextCategorias);
     const setActiveClass = ({ isActive }) => (isActive ? "active" : undefined);
-    const [logged, setLogged] = useState(false);
-    const [token, setToken] = useState('');
-
-    function hasJWT() {
-        let flag = false;
-        //check user has JWT token
-        localStorage.getItem("token") ? flag = true : flag = false
-        const token = localStorage.getItem("token");
-        setToken(token);
-        console.log(token)
-        setLogged(flag);
-    }
 
     useEffect(() => {
         async function fetchData() {
@@ -43,31 +31,13 @@ const Navbar = () => {
         // eslint-disable-next-line
     }, [setCategorias]);
 
-    useEffect(() => {
-        hasJWT()
-    }, []);
-
     const irProductos = (datos) => {
-        navigate(`/gallery`, {
+        navigate(`/gallery`,{
             state: {
-                id: datos.id,
-                categoria: datos.categoria
+              id: datos.id,
+              categoria: datos.categoria
             }
-        })
-    }
-
-    const irPerfil = (datos) => {
-        navigate(`/profile`, {
-            state: {
-                token: token
-            }
-        })
-    }
-
-    const cerrarSession = () => {
-        localStorage.clear();
-        navigate(`/`)
-        window.location.reload(false);
+          })
     }
 
     return (
@@ -129,11 +99,11 @@ const Navbar = () => {
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-dark">
                                     <li key={0}>
-                                        <a className="dropdown-item" onClick={() => irProductos({ id: 0, categoria: "Todos los Productos" })}>Todos los Productos</a>
+                                        <a className="dropdown-item" onClick={() => irProductos({id:0, categoria: "Todos los Productos"})}>Todos los Productos</a>
                                     </li>
                                     {categorias && categorias.length > 0 && categorias.map((categoria) => (
                                         <li key={categoria.id_categoria}>
-                                            <a className="dropdown-item" onClick={() => irProductos({ id: categoria.id_categoria, categoria: categoria.nombre })}>
+                                            <a className="dropdown-item" onClick={() => irProductos({id:categoria.id_categoria,categoria: categoria.nombre})}>
                                                 {categoria.nombre}
                                             </a>
                                         </li>
@@ -142,26 +112,16 @@ const Navbar = () => {
                             </li>
                         </ul>
                     </div>
-                    {logged === false ?
-                        <div className="Nav-link">
-                            <NavLink
-                                className={setActiveClass}
-                                style={{ color: "#F3EFE0" }}
-                                to="/UserVsSellerLogin"
-                                end
-                            >
-                                <i className="fa-solid  fa-user"> Iniciar Sesion </i>
-                            </NavLink> </div> :
-                        <div className="Nav-link ">
-                            <i className="fa-solid  fa-user" onClick={() => irPerfil()}> Mi Perfil </i>
-                            <div className="ms-3">
-                                <a className="fa-solid" onClick={() => cerrarSession()}> Cerrar Session </a>
-                            </div>
-                        </div>
-                    }
-                    {/* <div className="Nav-link">
-                        <button className="fa-solid" onClick={cerrarSession()}> Cerrar Session </button>
-                    </div> */}
+                    <div className="Nav-link">
+                        <NavLink
+                            className={setActiveClass}
+                            style={{ color: "#F3EFE0" }}
+                            to="/UserProfile"
+                            end
+                        >
+                            <i className="fa-solid  fa-user"> Perfil </i>
+                        </NavLink>
+                    </div>
                     <div className="Nav-link">
                         <NavLink
                             className={setActiveClass}

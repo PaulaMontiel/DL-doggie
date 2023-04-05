@@ -6,30 +6,34 @@ import Avatar2 from "../assets/img/Avatar2.webp";
 import { useEffect, useState, useContext } from 'react';
 import Context from '../user_context';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 // import jwt_decode from "jsonwebtoken"
 import axios from 'axios'
 import alertify from 'alertifyjs';
 const urlServer = process.env.REACT_APP_BASE_URL
 
+
 export default function UserProfile() {
-    const navigate = useNavigate();
+    let location = useLocation();
     const {user, setUser } = useContext(Context);
     const [localUser, setLocalUser] = useState({});
+
+    console.log(location);
     
-    const nombres = "";
-    const apellidoP = "";
-    const apellidoM = "";
-    const correo = "";
-    const celular = "";
-    const tipo = "";
-    const numero = "";
-    const ciudad = "";
-    const calle = "";
+    let nombres = "";
+    let apellidoP = "";
+    let apellidoM = "";
+    let correo = "";
+    let celular = "";
+    let tipo = "";
+    let numero = "";
+    let ciudad = "";
+    let calle = "";
 
 
     const leerToken = () =>{
-            let token = localStorage.getItem("token")
+            let token = location.state.token
             const base64Url = token.split('.')[1];
             const payload = JSON.parse(atob(base64Url));
             return payload
