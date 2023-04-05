@@ -4,8 +4,9 @@ import Publicaciones from './Publicaciones';
 import "../assets/css/profile.css"
 import Avatar2 from "../assets/img/Avatar2.webp";
 
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from "react-router-dom";
+import { useNavigate , useLocation} from 'react-router-dom';
+import { useEffect, useContext, useState } from "react";
+import Context from "../user_context";
 
 
 
