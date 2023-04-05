@@ -6,7 +6,9 @@ import Avatar2 from "../assets/img/Avatar2.webp";
 import { useNavigate , useLocation} from 'react-router-dom';
 import { useEffect, useContext, useState } from "react";
 import Context from "../user_context";
-
+import axios from 'axios'
+import alertify from 'alertifyjs';
+const urlServer = process.env.REACT_APP_BASE_URL
 
 
 async function getUserProfile(token) {
@@ -90,7 +92,7 @@ export default function UserProfile() {
     const payload =  leerToken()
 
     useEffect(()=>{
-        leerToke()
+      //  leerToke()
         getDireccion()
     }, [])
     

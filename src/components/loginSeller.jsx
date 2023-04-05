@@ -3,7 +3,7 @@ import axios from 'axios'
 import alertify from 'alertifyjs';
 import { useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
-
+const urlServer = process.env.REACT_APP_BASE_URL
 export default function LoginSeller(){
     const navigate = useNavigate();
    
