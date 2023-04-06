@@ -1,5 +1,9 @@
 .log-back{
-    background: url("../img/650205.jpeg");
+    background: url("../img/dog-with-binoculars.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
     height: 90vh;
     display: flex;
     flex-direction: column;
@@ -15,9 +19,12 @@
 .st-login{
     display: flex;
     align-items: center;
-    background-color: #F3EFE0;
+    background-color: transparent;
     opacity: 0.9;
     border-radius: 10px;
+    border: 2px solid #F3EFE0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    padding: 0.1em;
 }
 .btn-sign-in{
     background-color: #22A39F;

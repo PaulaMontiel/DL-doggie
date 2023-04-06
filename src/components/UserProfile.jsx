@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Publicaciones from '../views/Publicaciones';
 import "../assets/css/profile.css"
+import Avatar1 from "../assets/img/Avatar1.png";
 import Avatar2 from "../assets/img/Avatar2.webp";
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ export default function UserProfile() {
     let ciudad = "";
     let calle = "";
     let id = 0;
+    let avatar = "";
 
     const leerToken = () => {
         let token = location.state.token
@@ -45,6 +47,7 @@ export default function UserProfile() {
         ciudad = payload.usuario.ciudad
         calle = payload.usuario.calle
         numero = payload.usuario.numero
+        avatar = Avatar2
         console.log(calle)
     }
     if (payload.usuario.tipo === "vendedor") {
@@ -60,6 +63,7 @@ export default function UserProfile() {
         ciudad = payload.usuario.ciudad
         calle = payload.usuario.calle
         numero = payload.usuario.numero
+        avatar = Avatar1
         console.log("vendedor")
     }
 
@@ -77,7 +81,7 @@ export default function UserProfile() {
                     <Col lg={4}>
                         <Card className="mb-4, shadow">
                             <Card.Body className="card-body text-center blur">
-                                <Card.Img src={Avatar2} alt="avatar" className="img-fluid m-4" style={{ width: '120px' }} />
+                                <Card.Img src={avatar} alt="avatar" className="img-fluid m-4" style={{ width: '120px' }} />
                                 <Row >
                                     <Col sm={3}>
                                         <p className="mb-0 fw-bold">Nombre</p>
