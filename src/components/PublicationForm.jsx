@@ -1,24 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../assets/css/registrationP.css";
 import axios from 'axios'
 import alertify from 'alertifyjs';
 import { useNavigate } from "react-router-dom";
 const urlServer = process.env.REACT_APP_BASE_URL;
 
+
+
 function CrearPublicacion() {
+    const [id, setId] = useState(0);
     const [formData, setFormData] = useState({
         nombre: '',
         descripcion: '',
+        img: '',
         precio: '',
         stock: '',
-        estado: '',
+        estado: 'activo',
         marca: '',
-        idvendedor: '',
-        categoria: '',
-        imagen: ''
-    });
+        id_vendedor: '',
+        id_categoria: ''
 
-    const [selectedCategoria, setSelectedCategoria] = useState('Seleccione');
+    });
+    const [token, setToken] = useState('');
+
+    function hasJWT() {
+        let flag = false;
+        //check user has JWT token
+        localStorage.getItem("token") ? flag = true : flag = false
+        const token = localStorage.getItem("token");
+        setToken(token);
+        console.log(token)
+        if (!flag) {
+            localStorage.clear();
+            navigate(`/`)
+            window.location.reload(false);
+        }
+    }
+
+    useEffect(() => {
+        hasJWT()
+    }, []);
+
+    const navigate = useNavigate();
+
+    async function postPublicacion(formData) {
+        const endpoint = "productos/crear";
+        console.log(formData)
+        try {
+            formData.precio = parseInt(formData.precio)
+            formData.stock = parseInt(formData.stock)
+            console.log("entro al try")
+            console.log(urlServer + endpoint)
+            const consulta = await axios.post(urlServer + endpoint, formData);
+            console.log(consulta)
+            alertify.success("Publicacion creada con éxito");
+            navigate(`/profile`, {
+                state: {
+                    token: token
+                }
+            })
+        } catch (error) {
+            alertify.error("Algo salió mal ...");
+            console.log(error);
+        }
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -34,25 +79,50 @@ function CrearPublicacion() {
             [event.target.name]: event.target.value
         });
     }
+    const [selectedCategoria, setSelectedCategoria] = useState('Seleccione');
 
     const handleCategoriaSelect = (event) => {
+        event.preventDefault();
         setSelectedCategoria(event.target.textContent);
+        console.log(event.target.value)
+        // actualizar la propiedad 'categoria' en el estado 'formData'
+        setFormData({
+            ...formData,
+            id_categoria: parseInt(event.target.value)
+        });
     }
 
-    const navigate = useNavigate();
 
-    async function postPublicacion(formData) {
-        const endpoint = "publicacion/crear";
-        try {
-            const consulta = await axios.post(urlServer + endpoint, formData);
-            console.log(consulta)
-            alertify.success("Publicacion creada con éxito");
-            navigate("/login");
-        } catch (error) {
-            alertify.error("Algo salió mal ...");
-            console.log(error);
-        }
+    const leerToken = () => {
+        let token = localStorage.getItem("token")
+        console.log(token)
+        const base64Url = token.split('.')[1];
+        const payload = JSON.parse(atob(base64Url));
+        setId(payload.usuario.id_vendedor)
+        formData.id_vendedor = payload.usuario.id_vendedor
     }
+
+    useEffect(() => {
+        leerToken()
+
+    }, []);
+
+
+    // async function getUserProfile(token) {
+    //     const endpoint = `usuario/${userId}`;
+    //     try {
+    //         const response = await axios.get(urlServer + endpoint, {
+    //             headers: { Authorization: `Bearer ${token}` },
+    //         });
+    //         return response.data;
+
+    //     } catch (error) {
+    //         console.log(error);
+    //         console.log(endpoint)
+    //         alertify.error("Algo salió mal al obtener el perfil del usuario");
+    //     }
+    // }
+
 
     return (
         <div className='container-fluid back-user'>
@@ -69,19 +139,17 @@ function CrearPublicacion() {
                                 <input type="text" name="descripcion" placeholder=" Descripcion" required value={formData.descripcion} onChange={handleChange} />
                             </div>
                             <div className='col-es'>
-                                <input type="text" name="precio" placeholder=" Precio" required value={formData.precio} onChange={handleChange} />
+                                <input type="number" name="precio" placeholder=" Precio" required value={formData.precio} onChange={handleChange} />
                             </div>
                             <div className='col-es'>
-                                <input type="text" name="stock" placeholder=" Stock" required value={formData.stock} onChange={handleChange} />
+                                <input type="number" name="stock" placeholder=" Stock" required value={formData.stock} onChange={handleChange} />
+                            </div>
+
+                            <div className='col-es'>
+                                <input type="text" name="marca" placeholder=" Marca" required value={formData.marca} onChange={handleChange} />
                             </div>
                             <div className='col-es'>
-                                <input type="text" name="estado" placeholder=" Estado" required value={formData.estado} onChange={handleChange} />
-                            </div>
-                            <div className='col-es'>
-                                <input type="email" name="marca" placeholder=" Marca" required value={formData.correo} onChange={handleChange} />
-                            </div>
-                            <div className='col-es'>
-                                <input type="int" name="idvendedor" placeholder=" ID Vendedor" required value={formData.idVendedor} onChange={handleChange} />
+                                <h2>ID Vendedor : </h2><h2>{id}</h2>
                             </div>
                             <h4>Categoria</h4>
                             <div className='col-es'>
@@ -90,16 +158,16 @@ function CrearPublicacion() {
                                         {selectedCategoria}
                                     </button>
                                     <ul className="dropdown-menu">
-                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect}>Higiene</button></li>
-                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect}>Alimento</button></li>
-                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect}>Descanso</button></li>
-                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect}>Entretencion</button></li>
+                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="1">Higiene</button></li>
+                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="2">Alimento</button></li>
+                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="3">Descanso</button></li>
+                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="4">Entretencion</button></li>
                                     </ul>
                                 </div>
                             </div>
                             <h4>Link de Imagen</h4>
                             <div className='col-es'>
-                                <input type="text" name="imagen" placeholder=" Ingresar URL Aqui" required value={formData.img} onChange={handleChange} />
+                                <input type="text" name="img" placeholder=" Ingresar URL Aqui" required value={formData.img} onChange={handleChange} />
                             </div>
                             <div className='d-flex flex-column gap-3 dir-col'>
                                 <div>

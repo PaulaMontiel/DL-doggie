@@ -56,7 +56,7 @@ const Navbar = () => {
         })
     }
 
-    const irPerfil = (datos) => {
+    const irPerfil = () => {
         navigate(`/profile`, {
             state: {
                 token: token
@@ -150,15 +150,16 @@ const Navbar = () => {
                                 to="/UserVsSellerLogin"
                                 end
                             >
-                                <i className="fa-solid  fa-user"> Iniciar Sesion </i>
+                                <i className="fa-solid  fa-user me-1"> Iniciar Sesion  </i>
                             </NavLink> 
+                            <strong>/</strong>
                             <NavLink
                                 className={setActiveClass}
                                 style={{ color: "#F3EFE0" }}
                                 to="/UserVsSeller"
                                 end
                             >
-                                <i className="fa-solid  fa-user"> Registrate </i>
+                                <i className="fa-solid ms-1">  Registrate </i>
                             </NavLink>
                             </div> :
                         <div className="Nav-link ">

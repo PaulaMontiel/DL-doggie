@@ -60,14 +60,23 @@ x .grid-columns-5 {
 .carro {
   margin: 70px;
 }
-
+.detalles{
+  width: 80%;
+}
 .card-carro {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-
+.btn-colors{
+  background-color: #22A39F;
+  color: #f2f2f2;
+}
+.btn-color{
+  color: #f2f2f2;
+  background-color: #222222;
+}
 .gallery {
   margin: 20px;
 }

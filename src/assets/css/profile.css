@@ -1,4 +1,4 @@
-.section-profile{
+.section-profile {
     background: url("../img/side-view-dog.jpg");
     background-size: cover;
     background-position: center;
@@ -26,32 +26,39 @@
     
 } */
 
-.shadow{
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+.shadow {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.card{
+.card {
     background: transparent;
     position: relative;
-    border: 2px solid rgba(255,255,255,.5);
+    border: 2px solid rgba(255, 255, 255, .5);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    
+
 }
 
-.card-body h5, p{
+.card-body h5,
+p {
     color: #22A39F
 }
 
-.table{
+.table {
     background: transparent;
     position: relative;
-    border: 2px solid rgba(255,255,255,.3);
+    border: 2px solid rgba(255, 255, 255, .3);
 }
 
-.row{
+.row {
     background: transparent;
-} 
-.col p{
+}
+
+.col p {
     color: #000;
+}
+
+.btn-colors {
+    background-color: #22A39F;
+    color: #f2f2f2;
 }
