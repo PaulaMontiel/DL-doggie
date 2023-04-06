@@ -5,15 +5,16 @@ import cartContext from "../cart_context";
 import contextCost from "../total_amount_context";
 import { useNavigate } from "react-router-dom";
 import alertify from 'alertifyjs';
+import axios from 'axios';
 
 export default function Carro() {
     const navigate = useNavigate();
-
     const { cart, setCart } = useContext(cartContext);
     const { cost, setCost } = useContext(contextCost);
-
     const [logged, setLogged] = useState(false);
     const [token, setToken] = useState('');
+    let direccion = "";
+    let id = 0;
 
     function hasJWT() {
         let flag = false;
@@ -23,6 +24,10 @@ export default function Carro() {
         setToken(token);
         console.log(token)
         setLogged(flag);
+        const base64Url = token.split('.')[1];
+        const payload = JSON.parse(atob(base64Url));
+        direccion = payload.usuario.calle + " " + payload.usuario.numero + ", " + payload.usuario.comuna + ", " + payload.usuario.ciudad;
+        id = payload.usuario.id_usuario;
         return flag;
     }
 
@@ -34,14 +39,46 @@ export default function Carro() {
             }
         });
     };
-    const payProcess = () => {
-        if(hasJWT()){
-            console.log('carrito')
-            navigate(`/boleta`);
-        }else{
-            alertify.error("Debe iniciar session para realizar compras");
+
+    async function sendToBD() {
+        const request = {
+            productos: JSON.stringify(cart),
+            direccion: direccion,
+            id_usuario: id
         }
-        
+        console.log(request);
+        const response = await axios.post('https://backmarketdb.fly.dev/compras/crear', request);
+        console.log(response);
+        if (response.status === 200) {
+            alertify.success("Compra realizada con exito, generando Boleta de Compra");
+            setTimeout(() => {
+            }, 4000);
+            return true;
+        } else {
+            alertify.error("Error al realizar la compra");
+            setTimeout(() => {
+            }, 4000);
+        }
+    }
+
+    const payProcess = () => {
+        console.log(cart)
+        if (cart.length === 0) {
+            alertify.error("No existen productos en el carrito");
+        } else {
+            if (hasJWT()) {
+                const req = sendToBD();
+                if (req) {
+                    setTimeout(() => {
+                        navigate(`/boleta`);
+                    }, 4000);
+                } else {
+                    alertify.error("Error al realizar la compra");
+                }
+            } else {
+                alertify.error("Debe iniciar session para realizar compras");
+            }
+        }
     };
     const productDelete = (id, valor) => {
         console.log('delete');
