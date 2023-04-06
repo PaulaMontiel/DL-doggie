@@ -48,7 +48,7 @@ function App() {
               <Route path="/loginSeller" element={<LoginSeller/>} />
               <Route path="/userRegistration" element={<UserRegistration/>} />
               <Route path="/SellerRegistration" element={<SellerRegistration/>} />
-              <Route pathnp="/UserVsSeller" element={<UserVsSeller/>} />
+              <Route path="/UserVsSeller" element={<UserVsSeller/>} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/publicaciones" element={<Publicaciones />} />
               <Route path="/publicationForm" element={<CrearPublicacion/>} />

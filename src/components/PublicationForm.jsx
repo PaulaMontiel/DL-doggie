@@ -149,12 +149,10 @@ function CrearPublicacion() {
                                 </div>
                             </div>
                             <div>
-                                        <input type="text" onChange={handleChange} />
-                                        <img width={100} src={imageUrl} alt="" />
-                                        </div>
-                            <div className='col-es'>
-                                <input type="text" name="img" placeholder=" Ingresar URL Aqui" required value={formData.img} onChange={handleChange} />
+                                 <input type="text" onChange={handleChange}  placeholder=" Link de Imagen" required value={formData.img}/>
+                                 <img width={100} src={imageUrl} alt="" />
                             </div>
+                     
                             <div className='d-flex flex-column gap-3 dir-col'>
                                     <div className='col-es'>
                                         <textarea  type="text" name="descripcion" placeholder=" Descripcion" rows={4} cols={30} required value={formData.descripcion} onChange={handleChange} />
