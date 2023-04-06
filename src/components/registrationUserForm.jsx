@@ -58,8 +58,8 @@ function RegistrationForm() {
   
 
   return (
-    <div className='container-fluid back-user'>
-      <div className="row align-content-center">
+    <div className='container-fluid back-user d-flex flex-row justify-content-end'>
+      <div className="row align-content-center me-5">
         <div className='formulario p-5 st-lo'>
           <h2 className='p-2'>Registro de usuario</h2>
           <form className='form gap-2'  id="formulario" onSubmit={handleSubmit}>
@@ -85,8 +85,8 @@ function RegistrationForm() {
                     <input type="date" name="fecha_nacimiento" placeholder=" Fecha Nacimiento" required value={formData.fecha_nacimiento} onChange={handleChange} />
                   </div>
                   <div className='col-es'>
-                      <input type="radio" name="sexo" value="masculino" checked={formData.sexo === 'masculino'} onChange={handleChange} /> Masculino
-                      <input type="radio" name="sexo" value="femenino" checked={formData.sexo === 'femenino'} onChange={handleChange} /> Femenino
+                      <input className='text-dark' type="radio" name="sexo" value="masculino" checked={formData.sexo === 'masculino'} onChange={handleChange} /> Masculino
+                      <input className='text-dark'type="radio" name="sexo" value="femenino" checked={formData.sexo === 'femenino'} onChange={handleChange} /> Femenino
                   </div>
                   <h4>Informacion de la Cuenta</h4>
                 <div className='col-es'>
