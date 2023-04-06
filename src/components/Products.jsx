@@ -44,7 +44,7 @@ const Products = ({ product }) => {
                 <div className="container">
                     <div className="row">
                         <div key={product.id_producto} className="">
-                            <div className="card d-flex flex-row m-4">
+                            <div className="card d-flex flex-row m-4 bg-light p-1">
                                 <img src={product.img} alt={product.nombre} className="card-img-top img-card" />
                                 <div className="card-body m-5">
                                     <h2 className="card-title">{product.nombre}</h2>
