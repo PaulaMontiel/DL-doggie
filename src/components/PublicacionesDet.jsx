@@ -12,25 +12,6 @@ export default function PublicacionesDet() {
             .catch(error => console.log(error));
     }, []);
 
-    // const agregarPublicacion = (id) => {
-    //     const nuevosPublicaciones = publicacion.map((publicacion) => {
-    //         if (publicacion.id === id && publicacion.cantidad < publicacion.stock) {
-    //             return { ...publicacion, cantidad: publicacion.cantidad + 1 };
-    //         }
-    //         return publicacion;
-    //     });
-    //     setPublicaciones(nuevosPublicaciones);
-    // };
-
-    // const quitarPublicacion = (id) => {
-    //     const nuevosPublicaciones = publicacion.map((publicacion) => {
-    //         if (publicacion.id === id && publicacion.cantidad > 0) {
-    //             return { ...publicacion, cantidad: publicacion.cantidad - 1 };
-    //         }
-    //         return publicacion;
-    //     });
-    //     setPublicaciones(nuevosPublicaciones);
-    // };
 
     const eliminarPublicacion = (id) => {
         const nuevosPublicaciones = publicacion.filter((publicacion) => publicacion.id !== id);

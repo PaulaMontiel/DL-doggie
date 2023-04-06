@@ -149,7 +149,7 @@ function CrearPublicacion() {
                                 </div>
                             </div>
                             <div>
-                                        <input type="text" onChange={handleChange} />
+                                        <input type="text" onChange={handleChange}  placeholder=" Link de Imagen" required value={formData.img}/>
                                         <img width={100} src={imageUrl} alt="" />
                                         </div>
                             <div className='col-es'>
