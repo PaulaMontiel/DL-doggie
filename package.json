@@ -1,11 +1,7 @@
 {
   "name": "front-dog-shp",
   "version": "0.1.0",
-<<<<<<< HEAD
   "homepage": "https://marketdl.netlify.app",
-=======
-  "homepage": "/",
->>>>>>> 1a18d51 (cambiando bg)
   "private": true,
   "dependencies": {
     "@react-pdf/renderer": "^3.1.9",
