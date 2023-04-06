@@ -85,19 +85,6 @@ export default function Login(){
                         </button>
                     </div>
                     <div className="text-center">
-                        <span className="txt1">
-                            Or login with
-                        </span>
-                    </div>
-                    <div className="flex-c p-b-112 gap-3">
-                        <a href="/" className="p-2">
-                            <i className="fa fa-facebook-f"></i>
-                        </a>
-                        <a href="/" className="p-2">
-                            <i className="fa-brands fa-google cloud-icon"></i>
-                        </a>
-                    </div>
-                    <div className="text-center">
                         <a href="/front-dog-shp/userVsSeller" className="txt2 hov1">
                             Registrate aquí
                         </a>
