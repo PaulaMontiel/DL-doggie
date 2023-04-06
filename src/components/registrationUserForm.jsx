@@ -60,7 +60,7 @@ function RegistrationForm() {
   return (
     <div className='container-fluid back-user d-flex flex-row justify-content-end'>
       <div className="row align-content-center me-5">
-        <div className='formulario p-5 st-lo'>
+        <div className='formulario p-5 st-lo me-5'>
           <h2 className='p-2'>Registro de usuario</h2>
           <form className='form gap-2'  id="formulario" onSubmit={handleSubmit}>
                 <div className='dir-col'>
