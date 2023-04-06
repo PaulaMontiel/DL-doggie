@@ -75,11 +75,14 @@ function CrearPublicacion() {
     }
 
     const handleChange = (event) => {
-        setImageUrl(event.target.value);
+        let value = event.target.value;
+        let name = event.target.name
+        console.log(value, name);
         setFormData({
             ...formData,
-            [event.target.name]: event.target.value
+            [name]: value.value
         });
+        setImageUrl(value);
     }
     const [selectedCategoria, setSelectedCategoria] = useState('Categoria');
 
@@ -149,14 +152,14 @@ function CrearPublicacion() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='d-flex flex-column gap-2 mt-2'>  
-                                    <input type="text" onChange={handleChange} placeholder=" Link de Imagen" required value={formData.img} />
+                                <div className='d-flex flex-column gap-2 mt-2'>
+                                    <input type="text" name="img" onChange={handleChange} placeholder=" Link de Imagen" required value={formData.img} />
                                     <img width={200} src={imageUrl} alt="" />
                                 </div>
                             </div>
                             <div className='d-flex flex-column gap-3 dir-col mt-3'>
                                 <div className='d-flex'>
-                                    <textarea type="text" name="descripcion" placeholder=" Descripcion"  required value={formData.descripcion} onChange={handleChange} />
+                                    <textarea type="text" name="descripcion" placeholder=" Descripcion" required value={formData.descripcion} onChange={handleChange} />
                                 </div>
                                 <div className='d-flex flex-column dir-col'>
                                     <div>
