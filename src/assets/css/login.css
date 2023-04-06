@@ -13,10 +13,12 @@
     -webkit-text-fill-color: transparent;
 }
 .st-log{
-    background-color: #F3EFE0;
+    background-color: transparent;
     opacity: 0.7;
     border-radius: 10px;
     width: 30vw;
+    border: 2px solid #F3EFE0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 .btn-sign-in{
     background-color: #22A39F;
