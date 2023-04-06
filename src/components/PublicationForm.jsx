@@ -103,10 +103,10 @@ function CrearPublicacion() {
         setId(payload.usuario.id_vendedor)
         formData.id_vendedor = payload.usuario.id_vendedor
     }
-    
 
-       
-  
+
+
+
 
     useEffect(() => {
         leerToken()
@@ -114,59 +114,56 @@ function CrearPublicacion() {
     }, []);
 
     return (
-        <div className='container-fluid back-user'>
-            <div className="row align-content-center">
-                <div className='formulario p-5 st-lo'>
-                    <h2 className='p-2'>Crear Nueva Publicacion</h2>
-                    <form className='form gap-2' id="formulario" onSubmit={handleSubmit}>
+        <div className='container-fluid back-user d-flex flex-row justify-content-end'>
+            <div className="d-flex flex-column justify-content-center me-5 op">
+                <div className='d-flex flex-column align-items-center form-pub shadow '>
+                    <h3 className=' p-2'>Crear Nueva Publicacion</h3>
+                    <form className='' id="formulario" onSubmit={handleSubmit}>
                         <div className='dir-col'>
-                            <h4>Datos del Producto </h4>
-                            <div className='col-es'>
-                                <input type="text" name="nombre" placeholder=" Nombre del Producto" cols={40} required value={formData.nombre} onChange={handleChange} />
-                            </div>
-                           
-                            <div className='col-es'>
-                                <input type="number" name="precio" placeholder=" Precio" required value={formData.precio} onChange={handleChange} />
-                            </div>
-                            <div className='col-es'>
-                                <input type="number" name="stock" placeholder=" Stock" required value={formData.stock} onChange={handleChange} />
-                            </div>
-
-                            <div className='col-es'>
-                                <input type="text" name="marca" placeholder=" Marca" required value={formData.marca} onChange={handleChange} />
-                            </div>
-                            <div className='col-es'>
-                                <div className="dropdown">
-                                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {selectedCategoria}
-                                    </button>
-                                    <ul className="dropdown-menu">
-                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="1">Higiene</button></li>
-                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="2">Alimento</button></li>
-                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="3">Descanso</button></li>
-                                        <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="4">Entretencion</button></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div>
-                                 <input type="text" onChange={handleChange}  placeholder=" Link de Imagen" required value={formData.img}/>
-                                 <img width={100} src={imageUrl} alt="" />
-                            </div>
-                     
-                            <div className='d-flex flex-column gap-3 dir-col'>
-                                    <div className='col-es'>
-                                        <textarea  type="text" name="descripcion" placeholder=" Descripcion" rows={4} cols={30} required value={formData.descripcion} onChange={handleChange} />
+                            <h5>Datos del Producto </h5>
+                            <div className='d-flex flex-column'>
+                                <div className='d-flex flex-column gap-2'>
+                                    <div className='d-flex flex-column'>
+                                        <input type="text" name="nombre" placeholder=" Nombre del Producto" width={600} required value={formData.nombre} onChange={handleChange} />
                                     </div>
-                                    <div className='d-flex flex-column gap-3 dir-col'>
-                                        <div>
-                                            <input className='button-submit' type="submit" value="Crear" />
+                                    <div className='d-flex flex-column'>
+                                        <input type="number" name="precio" placeholder=" Precio" required value={formData.precio} onChange={handleChange} />
+                                    </div>
+                                    <div className='d-flex flex-column'>
+                                        <input type="number" name="stock" placeholder=" Stock" required value={formData.stock} onChange={handleChange} />
+                                    </div>
+                                    <div className='d-flex flex-column'>
+                                        <input type="text" name="marca" placeholder=" Marca" required value={formData.marca} onChange={handleChange} />
+                                    </div>
+                                    <div className='d-flex flex-column'>
+                                        <div className="dropdown">
+                                            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                {selectedCategoria}
+                                            </button>
+                                            <ul className="dropdown-menu">
+                                                <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="1">Higiene</button></li>
+                                                <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="2">Alimento</button></li>
+                                                <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="3">Descanso</button></li>
+                                                <li><button className="dropdown-item" onClick={handleCategoriaSelect} value="4">Entretencion</button></li>
+                                            </ul>
                                         </div>
                                     </div>
-                            </div>       
-                        </div>
-
-                        <div className='d-flex  gap-2 dir-col'>
-
+                                </div>
+                                <div className='d-flex flex-column gap-2 mt-2'>  
+                                    <input type="text" onChange={handleChange} placeholder=" Link de Imagen" required value={formData.img} />
+                                    <img width={200} src={imageUrl} alt="" />
+                                </div>
+                            </div>
+                            <div className='d-flex flex-column gap-3 dir-col mt-3'>
+                                <div className='d-flex'>
+                                    <textarea type="text" name="descripcion" placeholder=" Descripcion"  required value={formData.descripcion} onChange={handleChange} />
+                                </div>
+                                <div className='d-flex flex-column dir-col'>
+                                    <div>
+                                        <input className='button-submit' type="submit" value="Crear" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
