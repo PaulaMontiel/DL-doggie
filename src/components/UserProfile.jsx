@@ -76,15 +76,15 @@ export default function UserProfile() {
     return (
 
         <section className="section-profile" style={{ backgroundColor: '#eee', opacity: 0.8 }}>
-            <Container className="py-5">
+            <Container className="">
                 <Row style={{ marginTop: 1 }}>
                     <Col lg={4}>
-                        <Card className="mb-4, shadow">
+                        <Card className="shadow">
                             <Card.Body className="card-body text-center blur">
                                 <Card.Img src={avatar} alt="avatar" className="img-fluid m-4" style={{ width: '120px' }} />
                                 <Row >
                                     <Col sm={3}>
-                                        <p className="mb-0 fw-bold">Nombre</p>
+                                        <i class="fa-solid fa-user"></i>
                                     </Col>
                                     <Col sm={9}>
                                         <h6 className="mb-0 fw-bold">{nombres} {apellidoP} {apellidoM}</h6>
@@ -93,7 +93,7 @@ export default function UserProfile() {
 
                                 <Row >
                                     <Col sm={3}>
-                                        <p className="mb-0 fw-bold">Email</p>
+                                        <i class="fa-solid fa-at"></i>                                    
                                     </Col>
                                     <Col sm={9}>
                                         <h6 className="mb-0 fw-bold">{correo}</h6>
@@ -102,16 +102,16 @@ export default function UserProfile() {
 
                                 <Row>
                                     <Col sm={3}>
-                                        <p className="mb-0 fw-bold">Telefono</p>
+                                        <i class="fa-solid fa-phone"></i>                                    
                                     </Col>
                                     <Col sm={9}>
                                         <h6 className="mb-0 fw-bold">{celular}</h6>
                                     </Col>
                                 </Row>
 
-                                <Row >
+                                <Row  >
                                     <Col sm={3}>
-                                        <p className="mb-0 fw-bold">Direccion</p>
+                                    <i class="fa-solid fa-house"></i>
                                     </Col>
                                     <Col sm={9}>
                                         <h6 className="mb-0 fw-bold">{calle} {numero}, {ciudad}, región de {region} </h6>
