@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import '../assets/css/publicaciones.css';
 import ReactPaginate from 'react-paginate';
 
 export default function Publicaciones({ id }) {
     const [publicaciones, setPublicaciones] = useState([]);
-    const [compras, setCompras] = useState([]);
+    //const [compras, setCompras] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const ITEMS_PER_PAGE = 5;
     const userId = id[0];
@@ -48,7 +48,7 @@ export default function Publicaciones({ id }) {
                         <tr>
                             <th>Id Producto</th>
                             <th>Nombre</th>
-                            <th>Descripción</th>
+                            <th>Marca</th>
                             <th>Precio</th>
                             <th>Stock</th>
                         </tr>
@@ -70,7 +70,7 @@ export default function Publicaciones({ id }) {
                             <tr key={publicacion.id_producto}>
                                 <td>{publicacion.id_producto}</td>
                                 <td>{publicacion.nombre}</td>
-                                <td>{publicacion.descripcion}</td>
+                                <td>{publicacion.marca}</td>
                                 <td>{new Intl.NumberFormat('es-CL', { currency: 'CLP', style: 'currency' }).format(publicacion.precio)}</td>
                                 <td>{publicacion.stock}</td>
                             </tr>
