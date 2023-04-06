@@ -121,9 +121,9 @@ export default function Gallery() {
                     {filteredProducts && filteredProducts.length > 0 ?
                         filteredProducts.map((producto) => (
                             <div key={producto.id_producto} className="col-lg-4 mb-4">
-                                <div className="card">
+                                <div className="card text-light">
                                     <img src={producto.img} alt={producto.nombre} className="card-img-top" />
-                                    <div className="card-body">
+                                    <div className="card-body bg-light">
                                         <h5 className="card-title">{producto.nombre}</h5>
                                         <p className="card-title">{new Intl.NumberFormat('es-CL', { currency: 'CLP', style: 'currency' }).format(producto.precio)}</p>
                                         <button className="btn btn-outline-success btn-sm" onClick={() => productoDetails(producto.id_producto)}>Ver Más 👀</button>
