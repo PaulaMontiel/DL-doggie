@@ -9,6 +9,7 @@ const urlServer = process.env.REACT_APP_BASE_URL;
 
 function CrearPublicacion() {
     const [id, setId] = useState(0);
+    const [imageUrl, setImageUrl] = useState("");
     const [formData, setFormData] = useState({
         nombre: '',
         descripcion: '',
@@ -74,12 +75,13 @@ function CrearPublicacion() {
     }
 
     const handleChange = (event) => {
+        setImageUrl(event.target.value);
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
         });
     }
-    const [selectedCategoria, setSelectedCategoria] = useState('Seleccione');
+    const [selectedCategoria, setSelectedCategoria] = useState('Categoria');
 
     const handleCategoriaSelect = (event) => {
         event.preventDefault();
@@ -101,28 +103,15 @@ function CrearPublicacion() {
         setId(payload.usuario.id_vendedor)
         formData.id_vendedor = payload.usuario.id_vendedor
     }
+    
+
+       
+  
 
     useEffect(() => {
         leerToken()
 
     }, []);
-
-
-    // async function getUserProfile(token) {
-    //     const endpoint = `usuario/${userId}`;
-    //     try {
-    //         const response = await axios.get(urlServer + endpoint, {
-    //             headers: { Authorization: `Bearer ${token}` },
-    //         });
-    //         return response.data;
-
-    //     } catch (error) {
-    //         console.log(error);
-    //         console.log(endpoint)
-    //         alertify.error("Algo salió mal al obtener el perfil del usuario");
-    //     }
-    // }
-
 
     return (
         <div className='container-fluid back-user'>
@@ -133,11 +122,9 @@ function CrearPublicacion() {
                         <div className='dir-col'>
                             <h4>Datos del Producto </h4>
                             <div className='col-es'>
-                                <input type="text" name="nombre" placeholder=" Nombre" required value={formData.nombre} onChange={handleChange} />
+                                <input type="text" name="nombre" placeholder=" Nombre del Producto" cols={40} required value={formData.nombre} onChange={handleChange} />
                             </div>
-                            <div className='col-es'>
-                                <input type="text" name="descripcion" placeholder=" Descripcion" required value={formData.descripcion} onChange={handleChange} />
-                            </div>
+                           
                             <div className='col-es'>
                                 <input type="number" name="precio" placeholder=" Precio" required value={formData.precio} onChange={handleChange} />
                             </div>
@@ -148,10 +135,6 @@ function CrearPublicacion() {
                             <div className='col-es'>
                                 <input type="text" name="marca" placeholder=" Marca" required value={formData.marca} onChange={handleChange} />
                             </div>
-                            <div className='col-es'>
-                                <h2>ID Vendedor : </h2><h2>{id}</h2>
-                            </div>
-                            <h4>Categoria</h4>
                             <div className='col-es'>
                                 <div className="dropdown">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -165,15 +148,23 @@ function CrearPublicacion() {
                                     </ul>
                                 </div>
                             </div>
-                            <h4>Link de Imagen</h4>
+                            <div>
+                                        <input type="text" onChange={handleChange} />
+                                        <img width={100} src={imageUrl} alt="" />
+                                        </div>
                             <div className='col-es'>
                                 <input type="text" name="img" placeholder=" Ingresar URL Aqui" required value={formData.img} onChange={handleChange} />
                             </div>
                             <div className='d-flex flex-column gap-3 dir-col'>
-                                <div>
-                                    <input className='button-submit' type="submit" value="Crear" />
-                                </div>
-                            </div>
+                                    <div className='col-es'>
+                                        <textarea  type="text" name="descripcion" placeholder=" Descripcion" rows={4} cols={30} required value={formData.descripcion} onChange={handleChange} />
+                                    </div>
+                                    <div className='d-flex flex-column gap-3 dir-col'>
+                                        <div>
+                                            <input className='button-submit' type="submit" value="Crear" />
+                                        </div>
+                                    </div>
+                            </div>       
                         </div>
 
                         <div className='d-flex  gap-2 dir-col'>

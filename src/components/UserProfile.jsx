@@ -3,17 +3,8 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Publicaciones from '../views/Publicaciones';
 import "../assets/css/profile.css"
 import Avatar2 from "../assets/img/Avatar2.webp";
-<<<<<<< HEAD
-import { useNavigate , useLocation} from 'react-router-dom';
-import { useEffect, useContext, useState } from "react";
-import Context from "../user_context";
-import axios from 'axios'
-import alertify from 'alertifyjs';
-const urlServer = process.env.REACT_APP_BASE_URL
-=======
 import { useLocation, useNavigate } from 'react-router-dom';
 
->>>>>>> cbc44d6720739b82b08cf7bf689cb474161e2711
 
 
 export default function UserProfile() {
@@ -72,59 +63,11 @@ export default function UserProfile() {
         console.log("vendedor")
     }
 
-<<<<<<< HEAD
-    const leerToken = () =>{
-            let token = location.state.token
-            const base64Url = token.split('.')[1];
-            const payload = JSON.parse(atob(base64Url));
-            return payload
-    }
-    
-    const payload =  leerToken()
-
-    useEffect(()=>{
-      //  leerToke()
-        getDireccion()
-    }, [])
-    
-    useEffect(() => {
-        tipoUsuario();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [direccion]);
-
-    const tipoUsuario = ({data}) =>{
-        if(payload.usuario.tipo === "usuario"){
-            console.log(calle)
-           
-
-            nombres = payload.usuario.nombres
-            apellidoP = payload.usuario.apellido_patermo
-            apellidoM = payload.usuario.apellido_materno
-            correo =  payload.usuario.correo
-            celular = payload.usuario.celular
-            tipo = payload.usuario.tipo
-            ciudad = data[0].ciudad
-         //   numero = direccion.numero
-           // calle = data.calle
-            console.log(calle)
-
-        }
-        if(payload.usuario.tipo === "vendedor"){
-            console.log("vendedor")
-        }
-    }
-
-
-   
-   
-
-=======
     const irPublicacion = () => {
         navigate(`/publicationForm`)
     }
 
 
->>>>>>> cbc44d6720739b82b08cf7bf689cb474161e2711
 
     return (
 
@@ -205,14 +148,7 @@ export default function UserProfile() {
                         </Row>
                     </Col>
                 </Row>
-<<<<<<< HEAD
-            </Container>
-        </section>
-    )
-}
-=======
             </Container >
         </section >
     );
 }
->>>>>>> cbc44d6720739b82b08cf7bf689cb474161e2711
