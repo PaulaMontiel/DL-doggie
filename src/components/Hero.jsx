@@ -36,7 +36,6 @@ export default function Hero () {
                         />
                     </Carousel.Item>
                     <Carousel.Item interval={3000} className="item">
-
                         <img
                             className="d-block w-100 img-hero4"
                             src={doggie4}

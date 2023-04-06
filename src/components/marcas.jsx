@@ -27,31 +27,31 @@ export default function GalleryMarcas() {
                 <div className="row justify-content-space-around">
                     <div  className=" d-flex flex-row gap-5">
                         <div className="logo bg-light ">
-                            <img src={acana} alt='acana' className="im" onClick={() => productDetails()} />
+                            <img src={acana} alt='acana' className="im"  />
                         </div>
                         <div className="logo bg-light ">
-                            <img src={bravery} alt='bravery' className="im" onClick={() => productDetails()} />
+                            <img src={bravery} alt='bravery' className="im"  />
                         </div>
                         <div className="logo bg-light ">
-                            <img src={bravectorr} alt='bravectorr' className="im" onClick={() => productDetails()} />
+                            <img src={bravectorr} alt='bravectorr' className="im"  />
                         </div>
                         <div className="logo bg-light ">
-                            <img src={hills} alt='hills' className="im" onClick={() => productDetails()}/>
+                            <img src={hills} alt='hills' className="im" />
                         </div>
                         <div className="logo bg-light ">
-                            <img src={proplan} alt='proplan' className="im" onClick={() => productDetails()}/>
+                            <img src={proplan} alt='proplan' className="im" />
                         </div>
                         <div className="logo bg-light ">
-                            <img src={royalCanin} alt='royalCanin' className="im" onClick={() => productDetails()}/>
+                            <img src={royalCanin} alt='royalCanin' className="im" />
                         </div>
                         <div className="logo bg-light ">
-                            <img src={Core} alt='core' className="im" onClick={() => productDetails()}/>
+                            <img src={Core} alt='core' className="im" />
                         </div>
                         <div className="logo bg-light ">
-                            <img src={mPets} alt='mpets' className="im" onClick={() => productDetails()}/>
+                            <img src={mPets} alt='mpets' className="im" />
                         </div>
                         <div className="logo bg-light ">
-                            <img src={wuwu} alt='wuwu' className="im" onClick={() => productDetails()}/>
+                            <img src={wuwu} alt='wuwu' className="im" />
                         </div>
                     </div>
                 </div>
