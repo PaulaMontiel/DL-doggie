@@ -74,7 +74,15 @@ const Navbar = () => {
         <div className="">
             <nav className="navbar navbar-expand-md navbar-dark bg-negro">
                 <span className="navbar-brand">
-                    <img src={dl} alt="myIcon" width={200} />
+                    <NavLink
+                        className={setActiveClass}
+                        style={{ color: "#F3EFE0" }}
+                        to="/"
+                        end
+                    >
+                        <img src={dl} alt="myIcon" width={200} />
+                    </NavLink>
+
                 </span>
                 {/* <span>
                     <input
