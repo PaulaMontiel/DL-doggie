@@ -4,14 +4,8 @@
     background-position: center;
     background-size: cover;
     height: 90vh;
-    width:auto;
+    width: 100vw;
     color: #F3EFE0;
-}
-.container-fluid{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
 }
 .form{
     display: flex;
@@ -19,6 +13,13 @@
     align-items: stretch;
     
 
+}
+
+.form-pub{
+    background:#d8f9ff;
+    border-radius: 10px;
+    height: 90%;
+    width: 40vw;
 }
 .formulario{
     display: flex;
@@ -54,15 +55,15 @@ input{
     justify-content: space-between;
     align-items: center;
 }
-h2,h4{
+h3,h5{
     color: #434242;
     font-weight: bold;
 }
 .button-submit{
-    background-color: #F3EFE0;
+    background-color: #22A39F;
     color: #434242;
     border-radius: 15px;
-    border: 2px solid #F3EFE0;
+    border: 2px solid #22A39F;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     font-weight: bold;
     font-size: 1.2rem;
@@ -71,6 +72,7 @@ h2,h4{
     width: 100px;
     height: 40px;
     align-self: center;
+    opacity: 1;
 }
 
 .dflex{
@@ -90,4 +92,16 @@ h2,h4{
     justify-content: center;
     align-self: center;
     width: 100%;
+}
+textarea {
+    overflow: scroll;
+    resize: none;
+    width: 100%;
+}
+.rounded{
+    border-radius: 30px ;
+}
+.shadow{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    padding: 3em;
 }
