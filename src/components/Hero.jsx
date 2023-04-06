@@ -20,28 +20,28 @@ export default function Hero () {
                             alt="dog"
                         />
                     </Carousel.Item>
-                    <Carousel.Item interval={500} className="item">
+                    <Carousel.Item interval={1500} className="item">
                         <img
                             className="d-block w-100 img-hero2"
                             src={doggie2}
                             alt="Two"
                         />
                     </Carousel.Item>
-                    <Carousel.Item interval={500} className="item">
+                    <Carousel.Item interval={1500} className="item">
                         <img
                             className="d-block w-100 img-hero3"
                             src={doggie3}
                             alt="three"
                         />
                     </Carousel.Item>
-                    <Carousel.Item interval={500} className="item">
+                    <Carousel.Item interval={1500} className="item">
                         <img
                             className="d-block w-100 img-hero4"
                             src={doggie4}
                             alt="four"
                         />
                     </Carousel.Item>
-                    <Carousel.Item interval={500} className="item">
+                    <Carousel.Item interval={1500} className="item">
                         <img
                             className="d-block w-100 img-hero5"
                             src={doggie5}
