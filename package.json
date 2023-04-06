@@ -1,7 +1,7 @@
 {
   "name": "front-dog-shp",
   "version": "0.1.0",
-  "homepage": "https://dl-doggie-ckyp.vercel.app/",
+  "homepage": "https://marketdl.netlify.app/",
   "private": true,
   "dependencies": {
     "@react-pdf/renderer": "^3.1.9",
