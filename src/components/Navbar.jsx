@@ -151,7 +151,7 @@ const Navbar = () => {
                                 end
                             >
                                 <i className="fa-solid  fa-user me-1"> Iniciar Sesion  </i>
-                            </NavLink> 
+                            </NavLink>
                             <strong>/</strong>
                             <NavLink
                                 className={setActiveClass}
@@ -161,7 +161,7 @@ const Navbar = () => {
                             >
                                 <i className="fa-solid ms-1">  Registrate </i>
                             </NavLink>
-                            </div> :
+                        </div> :
                         <div className="Nav-link ">
                             <i className="fa-solid  fa-user" onClick={() => irPerfil()}> Mi Perfil </i>
                             <div className="ms-3">

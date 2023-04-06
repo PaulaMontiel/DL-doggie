@@ -113,9 +113,11 @@ export default function UserProfile() {
                                         <h6 className="mb-0 fw-bold">{calle} {numero}, {ciudad}, región de {region} </h6>
                                     </Col>
                                 </Row>
-                                <div className="d-flex justify-content-center mb-2 mt-3">
+                                {tipo === 'vendedor' ? <div className="d-flex justify-content-center mb-2 mt-3">
                                     <Button className="btn-colors" variant="primary" onClick={() => irPublicacion()}>Añadir Productos</Button>
-                                </div>
+                                </div> :
+                                    <div></div>
+                                }
                             </Card.Body>
                         </Card>
                     </Col>
@@ -142,7 +144,7 @@ export default function UserProfile() {
                         </Card>
                         <Row>
                             <Col md={12} style={{ marginTop: "20px" }}>
-                                <Publicaciones id={[id=id,tipo=tipo]}></Publicaciones>
+                                <Publicaciones id={[id = id, tipo = tipo]}></Publicaciones>
                             </Col>
 
                         </Row>

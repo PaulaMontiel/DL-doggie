@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
 import '../assets/css/publicaciones.css';
+import ReactPaginate from 'react-paginate';
 
-export default function Publicaciones({id}) {
+export default function Publicaciones({ id }) {
     const [publicaciones, setPublicaciones] = useState([]);
     const [compras, setCompras] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
+    const ITEMS_PER_PAGE = 5;
     const userId = id[0];
     const userType = id[1]
     console.log(userId);
@@ -22,84 +25,100 @@ export default function Publicaciones({id}) {
                     console.error("Error fetching prooducts:", error);
                 }
             } else if (userType === "usuario") {
-                /*try {
-                    const response = await fetch("https://backmarketdb.fly.dev/productos/mostrar/" + userId);
+                try {
+                    const response = await fetch("https://backmarketdb.fly.dev/compras/listadobyUser/" + userId);
                     const data = await response.json();
+                    console.log(data);
                     setPublicaciones([...data]);
                     console.log(publicaciones);
                 } catch (error) {
                     console.error("Error fetching prooducts:", error);
-                }*/
+                }
             }
         }
         fetchData();
         // eslint-disable-next-line
     }, [setPublicaciones]);
 
-    /*const [publicacion, setPublicaciones] = useState([
-        {
-            id: 1,
-            nombre: "Producto 1",
-            descripcion: "Descripción del Publicacion 1",
-            imagen: "/ruta/a/imagen1.jpg",
-            precio: 1000,
-            stock: 10,
-            cantidad: 0,
-        },
-        {
-            id: 2,
-            nombre: "Producto 2",
-            descripcion: "Descripción del Publicacion 2",
-            imagen: "/ruta/a/imagen2.jpg",
-            precio: 2000,
-            stock: 5,
-            cantidad: 0,
-        },
-        {
-            id: 3,
-            nombre: "Producto 3",
-            descripcion: "Descripción del Publicacion 3",
-            imagen: "/ruta/a/imagen3.jpg",
-            precio: 3000,
-            stock: 2,
-            cantidad: 0,
-        },
-    ]);*/
-
-
-
-
-
-
     return (
         <>
             <Table striped bordered hover style={{ backgroundColor: "lightblue", opacity: "0,5", borderRadius: "20px", overflow: "hidden" }}>
-                <thead>
-                    <tr>
-                        <th>Id Producto</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Stock</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {publicaciones.map((publicacion) => (
-                        <tr key={publicacion.id_producto}>
-                            <td>{publicacion.id_producto}</td>
-                            <td>{publicacion.nombre}</td>
-                            <td>{publicacion.descripcion}</td>
-                            <td>{publicacion.precio}</td>
-                            <td>{publicacion.stock}</td>
+                {userType === "vendedor" ?
+                    <thead>
+                        <tr>
+                            <th>Id Producto</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
+                    </thead>
+                    :
+                    <thead>
+                        <tr>
+                            <th>Número de Orden</th>
+                            <th>Fecha</th>
+                            <th>Dirección Entrega</th>
+                            <th>Cantidad Productos</th>
+                            <th>Valor Boleta</th>
+                        </tr>
+                    </thead>
+                }
+                {userType === "vendedor" ?
+                    <tbody>
+                        {publicaciones.slice(currentPage * ITEMS_PER_PAGE, (currentPage + 1) * ITEMS_PER_PAGE).map((publicacion) => (
+                            <tr key={publicacion.id_producto}>
+                                <td>{publicacion.id_producto}</td>
+                                <td>{publicacion.nombre}</td>
+                                <td>{publicacion.descripcion}</td>
+                                <td>{new Intl.NumberFormat('es-CL', { currency: 'CLP', style: 'currency' }).format(publicacion.precio)}</td>
+                                <td>{publicacion.stock}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                    :
+                    <tbody>
 
+                        {publicaciones.slice(currentPage * ITEMS_PER_PAGE, (currentPage + 1) * ITEMS_PER_PAGE).map((publicacion) => {
+                            const { productos } = publicacion;
+                            const cantidad = productos.length;
+                            const precio = productos.reduce((total, producto) => total + producto.precio, 0);
+                            const fechaFormateada = new Date(publicacion.fecha).toLocaleDateString('es-CL');
+
+                            return (
+                                <tr key={publicacion.id_compra}>
+                                    <td>{publicacion.id_compra}</td>
+                                    <td>{fechaFormateada}</td>
+                                    <td>{publicacion.direccion}</td>
+                                    <td>{cantidad}</td>
+                                    <td>{new Intl.NumberFormat('es-CL', { currency: 'CLP', style: 'currency' }).format(precio)}</td>
+                                </tr>
+                            );
+                        })}
+
+                    </tbody>
+                }
+            </Table>
+            <div>
+                <ReactPaginate
+                    previousLabel={'Anterior'}
+                    nextLabel={'Siguiente'}
+                    breakLabel={'...'}
+                    pageCount={Math.ceil(publicaciones.length / ITEMS_PER_PAGE)}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={(data) => {
+                        setCurrentPage(data.selected);
+                    }}
+                    containerClassName={'pagination justify-content-center'}
+                    pageClassName={'page-item'}
+                    pageLinkClassName={'page-link'}
+                    activeClassName={'active'}
+                    previousClassName={'page-item'}
+                    previousLinkClassName={'page-link'}
+                    nextClassName={'page-item'}
+                    nextLinkClassName={'page-link'}
+                />
+            </div>
         </>);
 }
-
-
-// const PublicacionesAgregados = publicacion.filter((publicacion) => publicacion.cantidad > 0);
-
-

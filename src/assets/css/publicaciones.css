@@ -69,3 +69,40 @@
     backdrop-filter: blur(10px);
 }
 
+.pagination {
+  margin-top: 20px;
+}
+
+.page-item {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.page-link {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.page-link:hover {
+  background-color: #f8f8f8;
+}
+
+.active .page-link {
+  background-color: #22A39F;
+  border-color: #22A39F;
+  color: #ffffff77;
+}
+
+.previous-link, .next-link {
+  border-radius: 4px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.previous-link:hover, .next-link:hover {
+  background-color: #f8f8f8;
+}
