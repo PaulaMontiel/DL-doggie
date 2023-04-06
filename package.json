@@ -1,8 +1,8 @@
 {
   "name": "front-dog-shp",
   "version": "0.1.0",
+  "homepage": "https://marketdl.netlify.app",
   "private": true,
-  "homepage": "https://paulamontiel.github.io/front-dog-shp",
   "dependencies": {
     "@react-pdf/renderer": "^3.1.9",
     "@testing-library/jest-dom": "^5.16.5",

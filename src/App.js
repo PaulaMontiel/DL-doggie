@@ -37,7 +37,7 @@ function App() {
         <MyTotalAmountContext.Provider value={{ cost, setCost }}>
         <CartContext.Provider value={{ cart, setCart }}>
         <CategoriaContext.Provider value = {{ categorias, setCategorias }}>
-          <BrowserRouter basename='front-dog-shp'>
+          <BrowserRouter >
             <Routes>
               <Route path="/" element={<Home /> }/>
               <Route path="/product/:id" element={<Product />} />
@@ -48,7 +48,7 @@ function App() {
               <Route path="/loginSeller" element={<LoginSeller/>} />
               <Route path="/userRegistration" element={<UserRegistration/>} />
               <Route path="/SellerRegistration" element={<SellerRegistration/>} />
-              <Route path="/UserVsSeller" element={<UserVsSeller/>} />
+              <Route pathnp="/UserVsSeller" element={<UserVsSeller/>} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/publicaciones" element={<Publicaciones />} />
               <Route path="/publicationForm" element={<CrearPublicacion/>} />
